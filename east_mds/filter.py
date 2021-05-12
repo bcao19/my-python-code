@@ -12,7 +12,7 @@ __author__ = 'caobin'
 from scipy import signal
 
 
-def band_stop(data, lowcut, highcut, fs, order=8):
+def band_stop(data, lowcut, highcut, fs, order=6):
     nyq = 0.5 * fs
     low = lowcut / nyq
     high = highcut / nyq
@@ -22,7 +22,7 @@ def band_stop(data, lowcut, highcut, fs, order=8):
     return filtedData
 
 
-def band_pass(data, lowcut, highcut, fs, order=8):
+def band_pass(data, lowcut, highcut, fs, order=6):
     nyq = 0.5 * fs
     low = lowcut / nyq
     high = highcut / nyq
@@ -32,7 +32,7 @@ def band_pass(data, lowcut, highcut, fs, order=8):
     return filtedData
 
 
-def low_pass(data,  highcut, fs, order=8):
+def low_pass(data,  highcut, fs, order=6):
     nyq = 0.5 * fs
     
     high = highcut / nyq
@@ -42,7 +42,7 @@ def low_pass(data,  highcut, fs, order=8):
     return filtedData
 
 
-def high_pass(data,  lowcut, fs, order=8):
+def high_pass(data,  lowcut, fs, order=6):
     nyq = 0.5 * fs
     low = lowcut / nyq
     

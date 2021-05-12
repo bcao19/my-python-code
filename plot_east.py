@@ -140,6 +140,7 @@ def plot_data():
 
             if up_filter != 0:
                 fs = 100/(t[100]-t[0])
+                fs = int(fs)
                 if low_filter == 0:
                     y = filter.high_pass(y, up_filter, fs)
                 elif up_filter >= 0.5*fs:
