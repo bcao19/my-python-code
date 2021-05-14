@@ -12,14 +12,10 @@ from east_mds import get_data as get
 import numpy as np
 import matplotlib.pyplot as plt
 
-def spec_stft(signal, shot, tree, timerange, vmax=0.002, fcut=0):
-    [t, x] = get.data(signal, shot, tree)
-    index = np.where((t>timerange[0])&(t<timerange[1]))
-    t = t[index]
-    x = x[index]
-    nfft = 1024
+def spec_stft(t, x, nfft=1024, vmax=0.002, fcut=0):
 
-    dt = (t[22]-t[2])//20
+
+    dt = (t[22]-t[2])/20
     ts=dt*1000
     fs=1/ts
     f, tf, Zxx = signal.stft(x, fs, nperseg=nfft, noverlap =nfft//2, detrend='constant')
@@ -53,7 +49,17 @@ if __name__ == '__main__':
     shot = input('Input the shot: ')
     shot = int(shot)
     tree = input('Input the tree: ')
+    begin_time = input('Input the begin_time: ')
+    begin_time = float(begin_time)
+    end_time = input('Input the end_time: ')
+    end_time = float(end_time)
     method = input('Input the method: ')
 
+
+    [t, x] = get.data(signal, shot, tree)
+    index = np.where((t>=begin_time)&(t<=end_time))
+    t = t[index]
+    x = x[index]
+
     if methon == 'stft':
-        
+        [tf, f, Zxx] = spec_stft(t, x)
