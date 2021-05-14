@@ -18,34 +18,35 @@ def spec_stft(t, x, nfft=1024, vmax=0.002, fcut=0):
     dt = (t[22]-t[2])/20
     ts=dt*1000
     fs=1/ts
-    f, tf, Zxx = signal.stft(x, fs, nperseg=nfft, noverlap =nfft//2, detrend='constant')
-    tf = tf+timerange[0]
+    from scipy import signal
+    f, tf, Zxx = signal.stft(x, fs, nperseg=nfft, noverlap=nfft//2, detrend='constant')
+    tf = tf/1000+t[0]
     Zxx = np.abs(Zxx)
     Zxx[0:1,:]=0
     vmin =0
     if vmax == -1:
         Zxx = np.log10(Zxx)-np.log10(np.max(Zxx))
-        vmax = max(Zxx)
-        vmin = min(Zxx)
+        vmax = np.max(Zxx)
+        vmin = np.min(Zxx)
 
     plt.figure()
     plt.pcolormesh(tf, f, Zxx, vmin=vmin, vmax=vmax, cmap='jet')
     plt.title('STFT Magnitude')
     plt.ylabel('Frequency [Hz]')
-    lt.xlabel('Time [sec]')
+    plt.xlabel('Time [sec]')
     plt.colorbar()
     if fcut != 0:
-        pllt.ylim([0, fcut])
+        plt.ylim([0, fcut])
 
-    plt.show
+    plt.show()
 
     return tf, f, Zxx
 
 
 
 if __name__ == '__main__':
-	
-	signal = input('Input the signal: ')
+
+    signal = input('Input the signal: ')
     shot = input('Input the shot: ')
     shot = int(shot)
     tree = input('Input the tree: ')
@@ -61,5 +62,5 @@ if __name__ == '__main__':
     t = t[index]
     x = x[index]
 
-    if methon == 'stft':
+    if method == 'stft':
         [tf, f, Zxx] = spec_stft(t, x)
