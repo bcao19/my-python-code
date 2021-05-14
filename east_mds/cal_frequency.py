@@ -32,7 +32,7 @@ def spec_stft(t, x, nfft=1024, vmax=0.002, fcut=0):
     plt.figure()
     plt.pcolormesh(tf, f, Zxx, vmin=vmin, vmax=vmax, cmap='jet')
     plt.title('STFT Magnitude')
-    plt.ylabel('Frequency [Hz]')
+    plt.ylabel('Frequency [kHz]')
     plt.xlabel('Time [sec]')
     plt.colorbar()
     if fcut != 0:
