@@ -148,6 +148,12 @@ def plot_data():
                     y = filter.low_pass(y, low_filter, fs)
                 else:
                     y = filter.band_stop(y, low_filter, up_filter, fs)
+            
+            judge = signal.decode("utf-8")
+            judge = judge[0:1]
+            if judge == "G1":
+                for i in [0 : length(y)-1]:
+                    y[i] = 10**(y[i]*1.667-9.333)
                 
                 
                 
