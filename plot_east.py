@@ -150,17 +150,19 @@ def plot_data():
                     y = filter.band_stop(y, low_filter, up_filter, fs)
             
             
-            judge = signal[0:1]
-            print(judge)
-            print(judge == "G1")
+            judge = signal[0:2]
             if judge == "G1":
-                i = 0
-                for temp in y:
-                    y[i] = 10**(temp*1.667-9.333)
-                    i = i+1
-                
-                
-                
+                temp = np.array(y)
+                temp = 10**(temp*1.667-9.333)
+                y = list(temp)
+            elif judge == "PA" or judge == "PJ":
+                temp = np.array(y)
+                temp = 2e3*temp
+                y = list(temp)
+            elif judge == "PP" or judge == "PD"
+                temp = np.array(y)
+                temp = 2e4*temp
+                y = list(temp)
             
             
             
