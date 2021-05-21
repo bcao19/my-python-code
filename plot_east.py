@@ -152,7 +152,7 @@ def plot_data():
             judge = signal.decode("utf-8")
             judge = judge[0:1]
             if judge == "G1":
-                for i in [0 : length(y)-1]:
+                for i in [0 : (len(y)-1)]:
                     y[i] = 10**(y[i]*1.667-9.333)
                 
                 
