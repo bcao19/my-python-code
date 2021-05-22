@@ -99,7 +99,7 @@ def get_input():
         begin_time = 0
     if len(end_time)==0:
         end_time = 10
-    begin_time = int(begin_time)
+    begin_time = float(begin_time)
     end_time = int(end_time)
 
     low_frequency= low_filter.get()
@@ -134,10 +134,21 @@ def plot_data():
             color = colors[j]
             j = j+1
             [t, y] = get.data(signal, shot, tree)
+
+            # if shot == 98346:
+            #     temp = np.array(t)
+            #     temp = temp-7
+            #     t = temp
+
+            # if shot == 98351:
+            #     temp =np.array(t)
+            #     temp = temp-5.5
+            #     t = temp
             
             index = np.where((t>=begin)&(t<=end))            
             t = t[index]
             y = y[index]
+
 
             if up_filter != 0:
                 fs = 100/(t[100]-t[0])
@@ -159,7 +170,7 @@ def plot_data():
                 temp = np.array(y)
                 temp = 2e3*temp
                 y = list(temp)
-            elif judge == "PP" or judge == "PD"
+            elif judge == "PP" or judge == "PD":
                 temp = np.array(y)
                 temp = 2e4*temp
                 y = list(temp)
