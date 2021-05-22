@@ -81,6 +81,11 @@ def get_input():
         if len(shot)>0:
             shot = int(shot)
             shots.append(shot)
+        else:
+            from MDSplus import Connection as CN
+            cn = CN('mds.ipp.ac.cn')
+            shot = cn.get("current_shot('east')")
+            shot = int(shot)
 
     for i in range(1, 8):
         signal = names['signal'+str(i)].get()
@@ -100,7 +105,7 @@ def get_input():
     if len(end_time)==0:
         end_time = 10
     begin_time = float(begin_time)
-    end_time = int(end_time)
+    end_time = float(end_time)
 
     low_frequency= low_filter.get()
     if len(low_frequency)==0:
