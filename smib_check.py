@@ -96,7 +96,6 @@ def getshot():
 
 
 
-
 tk.Button(window,text="Enter",command=getshot).pack() #command绑定获取文本框内容方法
 l3 = tk.Text(window, height=1)
 l3.pack()

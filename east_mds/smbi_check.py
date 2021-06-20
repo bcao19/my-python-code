@@ -13,93 +13,87 @@ import tkinter as tk
 import matplotlib.pyplot as plt
 import numpy as np
 from east_mds import get_data as get
+import MDSplus as mds
+from scipy.signal import savgol_filter
+from east_mds import filter
 
 
 
 
-window=tk.Tk() 
-window.title("SMBI check") 
-window.geometry("300x300") 
-window.resizable(width=False, height=False)
-l1=tk.Label(window,text="shot", height=1) 
-l1.pack() 
-l2=tk.Entry(window) 
-l2.pack()
-
-def getshot():
-    shot=l2.get() 
-    shot = int(shot)
-    [t_pas104, pas104] = get.data('JHF1', shot, 'east_1')
-    pas104 = 1e4*pas104
-    if len(t_pas104) > 1000:
-
-        [t_pas105, pas105] = get.data('PAS105', shot, 'east_1')
-        pas105 = 1e4*pas105
-        [t_pas103, pas103] = get.data('PAS103', shot, 'east_1')
-        pas103 = 1e4*pas103
-        [t_smbi3, smbi3] = get.data('SMBI3', shot, 'east')
-        [t_g105, g105] = get.data('G105', shot, 'east_1')
-        g105 = np.exp(1.667*g105-9.333)
-        print('SMBI3 ok')
-
-        [t_pjs203, pjs203] = get.data('PJS203', shot, 'east_1')
-        pjs203 = 1e4*pjs203
-        [t_pjs204, pjs204] = get.data('PJS204', shot, 'east_1')
-        pjs204 = 1e4*pjs204
-        [t_pjs205, pjs205] = get.data('PJS205', shot, 'east_1')
-        pjs205 = 1e4*pjs205
-        [t_smbi2, smbi2] = get.data('SMBI2', shot, 'east')
-        [t_g103, g103] = get.data('G401', shot, 'east_1')
-        g103 = np.exp(1.667*g103-9.333)
-        print('SMBI2 ok')
-
-        plt.figure(figsize=(9, 9))
-
-        plt.subplot(4, 2, 1)
-        plt.plot(t_pjs204, pjs204)
-        plt.title('SMBI2')
-
-        plt.subplot(4, 2, 2)
-        plt.plot(t_pas104, pas104)
-        plt.title('SMBI3')
-
-        plt.subplot(4, 2, 3)
-        plt.plot(t_pjs205, pjs205)
+def check(shot, whichone, small=1):
+    Pam2P = 4.82e20
+    kp = 4e5
+    if small < -1:
+        V = 2.0431e-4+3.78e-3
+    else:
+        V = 2.0431e-4
         
+    small = abs(small)
+    if whichone == 3:
+        signal_name = 'smbi3'
+        if small == 1:
+            gauge_name = 'PAS105'
+            kp = 2e3
+        elif small == 3:
+            gauge_name = 'PAS103'
+        else:
+            gauge_name = 'JHF1'
+    else:
+        signal_name = 'smbi2'
+        if small == 1:
+            gauge_name = 'PJS205'
+            kp = 2e3
+        elif small == 3:
+            gauge_name = 'PJS203'
+        else:
+            gauge_name = 'PJS204'
 
-        plt.subplot(4, 2, 4)
-        plt.plot(t_pas105, pas105)
-        
+    [ts, smbi] = get.data(signal_name, shot, 'EAST_1')
+    [tp, pressure] = get.data(gauge_name, shot, 'EAST_1')
+    pressure = kp*pressure
 
-        plt.subplot(4, 2, 5)
-        plt.plot(t_smbi2, smbi2, color='red')
-        
 
-        plt.subplot(4, 2, 6)
-        plt.plot(t_smbi3, smbi3, color='red')
-        
-
-        plt.subplot(4, 2, 7)
-        plt.plot(t_g103, g103)
-        
-
-        plt.subplot(4, 2, 8)
-        plt.plot(t_g105, g105)
-        
-
-        plt.show()
-        
-        
+    if len(smbi)<4.7e3:
+        n=0
+        l=0
+        p=0
 
     else:
-        l3.delete('1.0','end')
-        l3.insert('end', 'Error: No data')
+
+        index = np.where(smbi>2)
+        l = len(index[0])*1e-3
+        temp = smbi[1 : ]-smbi[ : -1]
+        index = np.where(temp>2)
+        n = len(index[0])
+
+        pressure = savgol_filter(pressure, 1001, 3)
+        len_p = len(pressure)
+        p = np.mean(pressure[100:1100])-min(pressure[int(len_p-1e4-100):int(len_p-1e4)])
+        p = abs(p)
+        if p<1e2:
+            p = 0
+        else:
+            p = p*V*Pam2P
+
+    print(n)
+    print(l)
+    print(p)
+
+    return n, l, p
 
 
 
 
 
-tk.Button(window,text="Enter",command=getshot).pack() #command绑定获取文本框内容方法
-l3 = tk.Text(window, height=1)
-l3.pack()
-window.mainloop() #进入主循环
+
+
+
+if __name__ == '__main__':
+
+    shot = input("input shot: ")
+    shot = int(shot)
+    whichone = input("input which SMBI: ")
+    whichone = int(whichone)
+    small = input("input gauge: ")
+    small = int(small)
+    [n, l, p] = check(shot, whichone, small)
