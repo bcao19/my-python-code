@@ -1,3 +1,11 @@
+'''
+Description: 
+Author: caobin
+Date: 2021-06-20 18:14:58
+Github: https://github.com/bcao19
+LastEditors: caobin
+LastEditTime: 2021-06-20 18:33:13
+'''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
 
@@ -68,7 +76,7 @@ def check(shot, whichone, small=1):
 
         pressure = savgol_filter(pressure, 1001, 3)
         len_p = len(pressure)
-        p = np.mean(pressure[100:1100])-min(pressure[int(len_p-1e4-100):int(len_p-1e4)])
+        p = np.mean(pressure[100:1100])-np.mean(pressure[int(len_p-1e4):int(len_p-1e4+100)])
         p = abs(p)
         if p<1e2:
             p = 0
