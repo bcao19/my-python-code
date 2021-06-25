@@ -25,3 +25,16 @@ def data(signal, shot, tree='east'):
 	x = np.array(x, dtype=np.float64)
 	
 	return t, x
+
+
+def data1(signal, shot, tree='east'):
+	
+	cn = mds.Connection('mds.ipp.ac.cn')
+	cn.openTree(tree, shot)
+	x = cn.get('\\'+signal).copy()
+	
+	cn.closeAllTrees()
+	
+	x = np.array(x, dtype=np.float64)
+	
+	return x
