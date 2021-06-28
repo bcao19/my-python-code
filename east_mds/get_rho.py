@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-22 
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-06-22
+LastEditTime: 2021-06-28 14:55:37
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -40,6 +40,24 @@ def read(shot, time, efit='efit_east'):
     rho = psi/ssibry
 
     return r_psi, z_psi, rho
+
+
+if __name__ == '__main__':
+
+    import matplotlib.pyplot as plt
+
+    shot = input("input shot: ")
+    shot = int(shot)
+    time = input("input the time: ")
+    time = float(time)
+    efit = input("input efit tree: ")
+    
+    [r, z, rho] = read(shot, time, efit)
+
+    C = plt.contour(r, z, rho, 20)
+    plt.clabel(C, inline=True, fontsize=12)
+    plt.show()
+
 
 
 
