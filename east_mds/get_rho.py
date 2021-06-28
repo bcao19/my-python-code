@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-22 
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-06-28 18:07:56
+LastEditTime: 2021-06-28 23:20:20
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -59,6 +59,8 @@ if __name__ == '__main__':
     time = input("input the time: ")
     time = float(time)
     efit = input("input efit tree: ")
+    if efit=="":
+        efit = 'efit_east'
     
     [r, z, rho] = read(shot, time, efit)
 
