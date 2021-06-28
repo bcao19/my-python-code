@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-22 
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-06-28 14:55:37
+LastEditTime: 2021-06-28 15:06:38
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -56,6 +56,8 @@ if __name__ == '__main__':
 
     C = plt.contour(r, z, rho, 20)
     plt.clabel(C, inline=True, fontsize=12)
+    ax = plt.gca()
+    ax.set_aspect(1)
     plt.show()
 
 
