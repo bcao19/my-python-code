@@ -56,20 +56,20 @@ def check(shot, whichone, small=1):
         else:
             gauge_name = 'PJS204'
 
-    smbi = get.data1(signal_name, shot, 'EAST')
-    pressure = get.data1(gauge_name, shot, 'EAST_1')
+    [ts, smbi] = get.data(signal_name, shot, 'EAST_1')
+    [tp, pressure] = get.data(gauge_name, shot, 'EAST_1')
     pressure = kp*pressure
 
 
-    if len(smbi)<4.7e4:
+    if len(smbi)<4.7e3:
         n=0
         l=0
         p=0
 
     else:
 
-        index = np.where(smbi>3)
-        l = len(index[0])*1e-4
+        index = np.where(smbi>2)
+        l = len(index[0])*1e-3
         temp = smbi[1 : ]-smbi[ : -1]
         index = np.where(temp>2)
         n = len(index[0])
@@ -104,6 +104,7 @@ if __name__ == '__main__':
     whichone = int(whichone)
     small = input("input gauge: ")
 <<<<<<< HEAD
+<<<<<<< HEAD
     if small == "":
 =======
     if small =="":
@@ -112,4 +113,7 @@ if __name__ == '__main__':
     else:
         small = int(small)
 
+=======
+    small = int(small)
+>>>>>>> parent of 9e30f4b (change to EAST tree)
     [n, l, p] = check(shot, whichone, small)
