@@ -105,6 +105,9 @@ if __name__ == '__main__':
     small = input("input gauge: ")
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of b0fce1d (EAST tree)
     if small == "":
 =======
     if small =="":
