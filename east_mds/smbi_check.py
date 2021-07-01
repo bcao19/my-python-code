@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-20 18:14:58
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-06-28 23:27:07
+LastEditTime: 2021-06-20 18:33:13
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -101,13 +101,11 @@ if __name__ == '__main__':
     shot = input("input shot: ")
     shot = int(shot)
     whichone = input("input which SMBI: ")
-    if whichone == "":
-        whichone = 2
-    else:
-        whichone = int(whichone)
+    whichone = int(whichone)
     small = input("input gauge: ")
     if small == "":
         small = 1
     else:
         small = int(small)
+
     [n, l, p] = check(shot, whichone, small)
