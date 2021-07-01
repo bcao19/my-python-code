@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-22 
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-06-22
+LastEditTime: 2021-06-28 23:20:20
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -40,6 +40,36 @@ def read(shot, time, efit='efit_east'):
     rho = psi/ssibry
 
     return r_psi, z_psi, rho
+
+
+
+def getrho(shot, time, efit='efit_east'):
+    [r, z, rho] = read(shot, time, efit)
+    from scipy import interpolate
+    newfunc = interpolate.interp2d(r, z, rho, kind='cubic')
+    return newfunc
+
+
+if __name__ == '__main__':
+
+    import matplotlib.pyplot as plt
+
+    shot = input("input shot: ")
+    shot = int(shot)
+    time = input("input the time: ")
+    time = float(time)
+    efit = input("input efit tree: ")
+    if efit=="":
+        efit = 'efit_east'
+    
+    [r, z, rho] = read(shot, time, efit)
+
+    C = plt.contour(r, z, rho, 20)
+    plt.clabel(C, inline=True, fontsize=12)
+    ax = plt.gca()
+    ax.set_aspect(1)
+    plt.show()
+
 
 
 
