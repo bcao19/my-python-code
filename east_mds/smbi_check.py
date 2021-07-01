@@ -106,11 +106,7 @@ if __name__ == '__main__':
     else:
         whichone = int(whichone)
     small = input("input gauge: ")
-<<<<<<< HEAD
     if small == "":
-=======
-    if small =="":
->>>>>>> abd404601b4d1ff6437db7a32808da87e02da8e6
         small = 1
     else:
         small = int(small)
