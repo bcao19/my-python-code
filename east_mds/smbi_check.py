@@ -71,7 +71,7 @@ def check(shot, whichone, small=1):
         index = np.where(smbi>3)
         l = len(index[0])*1e-4
         temp = smbi[1 : ]-smbi[ : -1]
-        index = np.where(temp>2)
+        index = np.where(temp>3)
         n = len(index[0])
 
         pressure = savgol_filter(pressure, 1001, 3)
