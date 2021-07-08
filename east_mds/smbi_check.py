@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-20 18:14:58
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-06-28 23:27:07
+LastEditTime: 2021-06-20 18:33:13
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -56,22 +56,22 @@ def check(shot, whichone, small=1):
         else:
             gauge_name = 'PJS204'
 
-    [ts, smbi] = get.data(signal_name, shot, 'EAST_1')
-    [tp, pressure] = get.data(gauge_name, shot, 'EAST_1')
+    smbi = get.data1(signal_name, shot, 'EAST')
+    pressure = get.data1(gauge_name, shot, 'EAST_1')
     pressure = kp*pressure
 
 
-    if len(smbi)<4.7e3:
+    if len(smbi)<4.7e4:
         n=0
         l=0
         p=0
 
     else:
 
-        index = np.where(smbi>2)
-        l = len(index[0])*1e-3
+        index = np.where(smbi>3)
+        l = len(index[0])*1e-4
         temp = smbi[1 : ]-smbi[ : -1]
-        index = np.where(temp>2)
+        index = np.where(temp>3)
         n = len(index[0])
 
         pressure = savgol_filter(pressure, 1001, 3)
@@ -102,12 +102,13 @@ if __name__ == '__main__':
     shot = int(shot)
     whichone = input("input which SMBI: ")
     if whichone == "":
-        whichone = 2
+        whichone=2
     else:
         whichone = int(whichone)
     small = input("input gauge: ")
-    if small =="":
+    if small == "":
         small = 1
     else:
         small = int(small)
+
     [n, l, p] = check(shot, whichone, small)
