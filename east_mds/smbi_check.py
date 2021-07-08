@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-20 18:14:58
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-06-20 18:33:13
+LastEditTime: 2021-07-08 10:10:31
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -46,7 +46,7 @@ def check(shot, whichone, small=1):
             gauge_name = 'PAS103'
         else:
             gauge_name = 'JHF1'
-    else:
+    elif whichone == 2:
         signal_name = 'smbi2'
         if small == 1:
             gauge_name = 'PJS205'
@@ -55,6 +55,44 @@ def check(shot, whichone, small=1):
             gauge_name = 'PJS203'
         else:
             gauge_name = 'PJS204'
+    elif whichone == 4:
+        V = 4e-4
+        signal_name = 'smbi4'
+        if small == 1:
+            gauge_name = 'PDS1_2'
+            kp = 2e4
+        else:
+            gauge_name ='PDS1_1'
+    elif whichone == 5:
+        V = 4e-4
+        signal_name = 'smbi5'
+        if small == 1:
+            gauge_name = 'PDS1_2'
+            kp = 2e4
+        else:
+            gauge_name ='PDS1_1'
+    elif whichone == 6:
+        V = 4e-4
+        signal_name = 'smbi6'
+        if small == 1:
+            gauge_name = 'PPS1_2'
+            kp = 2e4
+        else:
+            gauge_name ='PPS1_1'
+    elif whichone == 7:
+        V = 4e-4
+        signal_name = 'smbi7'
+        if small == 1:
+            gauge_name = 'PPS1_2'
+            kp = 2e4
+        else:
+            gauge_name ='PPS1_1'
+    else:
+        import sys
+        sys.exit('SMBI No. error')
+
+
+
 
     smbi = get.data1(signal_name, shot, 'EAST')
     pressure = get.data1(gauge_name, shot, 'EAST_1')
