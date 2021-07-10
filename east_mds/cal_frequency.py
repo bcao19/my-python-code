@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-16 09:01:57
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-07-10 17:07:04
+LastEditTime: 2021-07-10 21:02:00
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -70,7 +70,7 @@ if __name__ == '__main__':
 
     signal = input('Input the signal: ')
     if signal == "":
-        signal = 'kmp14t'
+        signal = 'cmpl6t'
     tree = input('Input the tree: ')
     if tree == "":
         tree = 'east'
