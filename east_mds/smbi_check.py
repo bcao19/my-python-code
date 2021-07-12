@@ -113,7 +113,7 @@ def check(shot, whichone, small=1):
         # n = len(index[0])
         t = t[index]
         temp = t[1 : ]-t[ : -1]
-        index = np.where(temp>8e-4)
+        index = np.where(temp>7e-4)
         n = len(index[0])+1
 
 
