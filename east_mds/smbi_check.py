@@ -94,7 +94,7 @@ def check(shot, whichone, small=1):
 
 
 
-    smbi = get.data1(signal_name, shot, 'EAST')
+    [t, smbi] = get.data(signal_name, shot, 'EAST')
     pressure = get.data1(gauge_name, shot, 'EAST_1')
     pressure = kp*pressure
 
@@ -108,9 +108,14 @@ def check(shot, whichone, small=1):
 
         index = np.where(smbi>3)
         l = len(index[0])*1e-4
-        temp = smbi[1 : ]-smbi[ : -1]
-        index = np.where(temp>3)
-        n = len(index[0])
+        # temp = smbi[1 : ]-smbi[ : -1]
+        # index = np.where(temp>3)
+        # n = len(index[0])
+        t = t[index]
+        temp = t[1 : ]-t[ : -1]
+        index = np.where(temp>8e-4)
+        n = len(index[0])+1
+
 
         pressure = savgol_filter(pressure, 1001, 3)
         len_p = len(pressure)
