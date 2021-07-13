@@ -82,12 +82,12 @@ def get_input():
             shot = int(shot)
             shots.append(shot)
         else:
-            from MDSplus import Connection as CN
-            cn = CN('mds.ipp.ac.cn')
-            shot = cn.get("current_shot('east')")
-            shot = int(shot)
-            shots.append(shot)
-            break
+            if i == 1:
+                from MDSplus import Connection as CN
+                cn = CN('mds.ipp.ac.cn')
+                shot = cn.get("current_shot('east')")
+                shot = int(shot)
+                shots.append(shot)
 
     for i in range(1, 8):
         signal = names['signal'+str(i)].get()
