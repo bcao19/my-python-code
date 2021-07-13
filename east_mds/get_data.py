@@ -1,8 +1,8 @@
 '''
 Author       : caobin
 Date         : 2021-05-12 09:40:00
-LastEditors  : caobin
-LastEditTime : 2021-07-13 15:12:39
+LastEditors: caobin
+LastEditTime: 2021-07-13 20:03:49
 FilePath     : \my-python-code\east_mds\get_data.py
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
@@ -21,8 +21,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def data(signal, shot, tree='east', *timerange):
+def data(signal, shot, **kw):
 	
+	if 'tree' in kw:
+		tree = kw['tree']
+	else:
+		tree = 'east'
+
 	cn = mds.Connection('mds.ipp.ac.cn')
 	cn.openTree(tree, shot)
 	x = cn.get('\\'+signal).copy()
@@ -34,7 +39,8 @@ def data(signal, shot, tree='east', *timerange):
 
 
 	
-	if timerange != ():
+	if 'timerange' in kw:
+		timerange = kw['timerange']
 		index = np.where((t>=np.min(timerange))&(t<=np.max(timerange)))
 		t = t[index]
 		x = x[index]
