@@ -2,7 +2,7 @@
 Author       : caobin
 Date         : 2021-05-12 09:40:00
 LastEditors: caobin
-LastEditTime: 2021-07-13 20:03:49
+LastEditTime: 2021-07-13 20:53:14
 FilePath     : \my-python-code\east_mds\get_data.py
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
@@ -19,6 +19,7 @@ __author__ = 'caobin'
 import MDSplus as mds
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy.signal as sig
 
 
 def data(signal, shot, **kw):
@@ -37,13 +38,17 @@ def data(signal, shot, **kw):
 	x = np.array(x, dtype=np.float64)
 
 
-
-	
 	if 'timerange' in kw:
 		timerange = kw['timerange']
 		index = np.where((t>=np.min(timerange))&(t<=np.max(timerange)))
 		t = t[index]
 		x = x[index]
+
+	
+	if 'medfilt' in kw:
+		n = kw['medfilt']
+		x = sig.medfilt(x, n)
+
 
 	return t, x
 
