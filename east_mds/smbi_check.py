@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-20 18:14:58
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-07-08 10:10:31
+LastEditTime: 2021-07-13 20:29:59
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -94,8 +94,8 @@ def check(shot, whichone, small=1):
 
 
 
-    [t, smbi] = get.data(signal_name, shot, 'EAST')
-    pressure = get.data1(gauge_name, shot, 'EAST_1')
+    [t, smbi] = get.data(signal_name, shot, tree='EAST')
+    pressure = get.data1(gauge_name, shot, tree='EAST_1')
     pressure = kp*pressure
 
 

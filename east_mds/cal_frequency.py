@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-16 09:01:57
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-07-10 21:02:00
+LastEditTime: 2021-07-13 20:10:31
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -108,7 +108,7 @@ if __name__ == '__main__':
         vmax = float(vmax)
 
 
-    [t, x] = get.data(signal, shot, tree)
+    [t, x] = get.data(signal, shot, tree=tree)
     index = np.where((t>=begin_time)&(t<=end_time))
     t = t[index]
     x = x[index]

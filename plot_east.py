@@ -86,6 +86,8 @@ def get_input():
             cn = CN('mds.ipp.ac.cn')
             shot = cn.get("current_shot('east')")
             shot = int(shot)
+            shots.append(shot)
+            break
 
     for i in range(1, 8):
         signal = names['signal'+str(i)].get()
@@ -138,7 +140,7 @@ def plot_data():
         for shot in shots:
             color = colors[j]
             j = j+1
-            [t, y] = get.data(signal, shot, tree)
+            [t, y] = get.data(signal, shot, tree=tree)
 
             # if shot == 98346:
             #     temp = np.array(t)
