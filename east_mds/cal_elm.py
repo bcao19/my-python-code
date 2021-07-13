@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-07-13 22:27:24
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-07-14 00:38:42
+LastEditTime: 2021-07-14 01:11:00
 '''
 
 #!/home/ASIPP/caobin/anaconda3/bin/python
@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 from east_mds import get_data as get
 
 
-def find_peak(x, minx=0, maxx=0):
+def find_peak(x, win=10, minx=0, maxx=0):
     if maxx == 0:
         maxx = max(x)
     divx1 = x[1 : -1]-x[ : -2]
