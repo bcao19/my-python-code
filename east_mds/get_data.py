@@ -2,7 +2,7 @@
 Author       : caobin
 Date         : 2021-05-12 09:40:00
 LastEditors: caobin
-LastEditTime: 2021-07-13 20:53:14
+LastEditTime: 2021-07-13 21:00:20
 FilePath     : \my-python-code\east_mds\get_data.py
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
