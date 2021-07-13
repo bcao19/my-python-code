@@ -1,3 +1,10 @@
+'''
+Author       : caobin
+Date         : 2021-05-12 09:40:00
+LastEditors  : caobin
+LastEditTime : 2021-07-13 14:47:38
+FilePath     : \my-python-code\east_mds\get_data.py
+'''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
 
@@ -14,7 +21,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def data(signal, shot, tree='east'):
+def data(signal, shot, tree='east', *timerange):
 	
 	cn = mds.Connection('mds.ipp.ac.cn')
 	cn.openTree(tree, shot)
@@ -23,7 +30,15 @@ def data(signal, shot, tree='east'):
 	cn.closeAllTrees()
 	t = np.array(t, dtype=np.float64)
 	x = np.array(x, dtype=np.float64)
+
+
+
 	
+	if timerange != ():
+		index = np.where((t>=np.min(timerange))&(t<=np.max(timerange)))
+		t = t[index]
+		x = x[index]
+
 	return t, x
 
 
