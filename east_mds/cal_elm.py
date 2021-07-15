@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-07-13 22:27:24
 Github: https://github.com/bcao19
 LastEditors  : caobin
-LastEditTime : 2021-07-15 14:08:50
+LastEditTime : 2021-07-15 14:27:30
 '''
 
 #!/home/ASIPP/caobin/anaconda3/bin/python
@@ -23,7 +23,7 @@ def find_peak(x, win=10, minx=0, maxx=0, percent=90):
     n = len(x)
     judge = np.zeros(n)
     for i in range(1, n-1):
-        if x[i]-x[i-1]>0 and x[i]-x[i+1]>0:
+        if x[i]-x[i-1]>=0 and x[i]-x[i+1]>=0:
             if x[i]>minx and x[i]<=maxx:
                 left = i-win
                 if left<0:
