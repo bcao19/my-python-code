@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-07-13 22:27:24
 Github: https://github.com/bcao19
 LastEditors  : caobin
-LastEditTime : 2021-07-14 15:55:35
+LastEditTime : 2021-07-15 14:08:50
 '''
 
 #!/home/ASIPP/caobin/anaconda3/bin/python
@@ -41,7 +41,7 @@ def find_peak(x, win=10, minx=0, maxx=0, percent=90):
                 if right2>n+1:
                     right2 = n+1
                 right2 = int(right2)
-                if x[i]>=max(x[left:right]) and x[i]>np.percentile(x[left2:right2], 95):
+                if x[i]>=max(x[left:right]) and x[i]>np.percentile(x[left2:right2], percent):
                     judge[i]=1
     
     index = np.where(judge == 1)
