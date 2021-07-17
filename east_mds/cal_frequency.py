@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-16 09:01:57
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-07-13 20:10:31
+LastEditTime: 2021-07-17 19:25:43
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -121,7 +121,9 @@ if __name__ == '__main__':
             wavename = 'cgau8'
         [tf, f, Zxx, vmin, vmax] = spec_wavlet(t, x, nfft, wavename, vmax)
     if vmax == 0:
-        vmax = np.percentile(Zxx, 90)
+        vmax = np.percentile(Zxx, 95)
+    else:
+        vmax = np.percentile(Zxx, vmax)
 
 
 
