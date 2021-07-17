@@ -3,8 +3,8 @@ Description:
 Author: caobin
 Date: 2021-07-13 22:27:24
 Github: https://github.com/bcao19
-LastEditors  : caobin
-LastEditTime : 2021-07-17 14:29:16
+LastEditors: caobin
+LastEditTime: 2021-07-17 15:40:35
 '''
 
 #!/home/ASIPP/caobin/anaconda3/bin/python
@@ -111,7 +111,7 @@ if __name__ == '__main__':
 
     signal = input('Input the signal: ')
     if signal == "":
-        signal = 'dal1'
+        signal = 'pxuv1'
     tree = input('Input the tree: ')
     if tree == "":
         tree = 'east'
@@ -202,6 +202,7 @@ if __name__ == '__main__':
 
     else:
         [t, x] = get.data(signal, shot, tree=tree, timerange=timerange)
+        [tw, w] = get.data('ENG', shot, tree='analysis', timerange=timerange)
         win = win//(t[1000]-t[0])
 
         if onlybase<=0:
@@ -214,7 +215,7 @@ if __name__ == '__main__':
                 n = 1
 
             colors = ['r', 'g', 'c', 'm', 'y']
-            plt.figure(figsize=(6, 9))
+            plt.figure(figsize=(6, 8))
             plt.subplot(3, 1, 3)
             plt.plot(t, x)
 
@@ -231,23 +232,32 @@ if __name__ == '__main__':
             plt.ylabel(r'ELM $\delta$w (kJ)')
             plt.xlim(begin_time, end_time)
 
-            [td, dw] = cal_dw(t, x, dw_threshold)
+            [td, dw] = cal_dw(tw, w, dw_threshold)
+            
 
             for i in range(n):
                 
                 index = find_peak(x, win, threshold[i], threshold[i+1], percent)
                 f_elm = cal_f(t[index])
-                dw_index = np.zeros(len(index[0]))
-                for i in range(len(index[0])):
-                    tmp = np.where(td>index[0][i])
+                tmp_index = index[0]
+                dw_elm = np.zeros(len(tmp_index))
+                
+                for j in range(len(tmp_index)):
+                    tmp = tmp_index[j]
+                    tmp = np.where(td>t[tmp])
+                    
                     if len(tmp[0])>0:
-                        dw_index[i] = tmp[0][0]
+                        tmp = tmp[0][0]
+                        dw_elm[j] = dw[tmp]
 
                 plt.subplot(3, 1, 3)
                 plt.scatter(t[index], x[index], s=40, facecolors='none', edgecolors=colors[i])
                 plt.subplot(3, 1, 2)
                 plt.scatter(t[index], f_elm, s=40, facecolors='none', edgecolors=colors[i])
-                plt.scatter(t[index], dw[dw_index], s=40, facecolors='none', edgecolors=colors[i])
+                # plt.plot(timerange, [np.mean(f_elm), np.mean(f_elm)], c=colors[i], linestyle="--")
+                plt.subplot(3, 1, 1)
+                plt.scatter(t[index], dw_elm, s=40, facecolors='none', edgecolors=colors[i], marker='v')
+                # plt.plot(timerange, [np.mean(dw_elm), np.mean(dw_elm)], c=colors[i], linestyle="--")
 
 
         else:
