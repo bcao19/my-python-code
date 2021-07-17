@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-16 09:01:57
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-07-17 19:25:43
+LastEditTime: 2021-07-17 20:04:25
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -74,8 +74,8 @@ if __name__ == '__main__':
     tree = input('Input the tree: ')
     if tree == "":
         tree = 'east'
-    shot = input('Input the shot: ')
-    shot = int(shot)
+    shot_num = input('Input the shot: ')
+    shot = int(shot_num)
     begin_time = input('Input the begin_time: ')
     begin_time = float(begin_time)
     end_time = input('Input the end_time: ')
@@ -129,8 +129,8 @@ if __name__ == '__main__':
 
     plt.figure()
     plt.pcolormesh(tf, f, Zxx, vmin=vmin, vmax=vmax, cmap='jet')
-    plt.title(signal)
-    plt.ylabel('Frequency [kHz]')
+    plt.title(shot_num)
+    plt.ylabel(signal+' [kHz]')
     plt.xlabel('Time [sec]')
     plt.colorbar()
     if fcut != 0:
