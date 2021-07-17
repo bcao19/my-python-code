@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-07-13 22:27:24
 Github: https://github.com/bcao19
 LastEditors  : caobin
-LastEditTime : 2021-07-17 14:25:42
+LastEditTime : 2021-07-17 14:29:16
 '''
 
 #!/home/ASIPP/caobin/anaconda3/bin/python
@@ -215,7 +215,7 @@ if __name__ == '__main__':
 
             colors = ['r', 'g', 'c', 'm', 'y']
             plt.figure(figsize=(6, 9))
-            plt.subplot(2, 1, 3)
+            plt.subplot(3, 1, 3)
             plt.plot(t, x)
 
             if onlybase == 0:
@@ -224,10 +224,10 @@ if __name__ == '__main__':
             plt.xlabel('time (s)')
             plt.ylabel(signal)
             plt.xlim(begin_time, end_time)
-            plt.subplot(2, 1, 2)
+            plt.subplot(3, 1, 2)
             plt.ylabel('ELM frequency (Hz)')
             plt.xlim(begin_time, end_time)
-            plt.subplot(2, 1, 1)
+            plt.subplot(3, 1, 1)
             plt.ylabel(r'ELM $\delta$w (kJ)')
             plt.xlim(begin_time, end_time)
 
@@ -243,11 +243,11 @@ if __name__ == '__main__':
                     if len(tmp[0])>0:
                         dw_index[i] = tmp[0][0]
 
-                plt.subplot(2, 1, 3)
+                plt.subplot(3, 1, 3)
                 plt.scatter(t[index], x[index], s=40, facecolors='none', edgecolors=colors[i])
-                plt.subplot(2, 1, 2)
+                plt.subplot(3, 1, 2)
                 plt.scatter(t[index], f_elm, s=40, facecolors='none', edgecolors=colors[i])
-                plt.scatter(t[index], dw[dw_index])
+                plt.scatter(t[index], dw[dw_index], s=40, facecolors='none', edgecolors=colors[i])
 
 
         else:
