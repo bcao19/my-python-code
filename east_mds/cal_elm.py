@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-07-13 22:27:24
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-07-17 15:40:35
+LastEditTime: 2021-07-17 21:31:53
 '''
 
 #!/home/ASIPP/caobin/anaconda3/bin/python
@@ -115,8 +115,8 @@ if __name__ == '__main__':
     tree = input('Input the tree: ')
     if tree == "":
         tree = 'east'
-    shot = input('Input the shot: ')
-    shot = int(shot)
+    shot_num = input('Input the shot: ')
+    shot = int(shot_num)
     begin_time = input('Input the begin_time: ')
     begin_time = float(begin_time)
     end_time = input('Input the end_time: ')
@@ -177,6 +177,7 @@ if __name__ == '__main__':
             plt.ylabel(signal)
             plt.xlim(begin_time, end_time)
             plt.subplot(2, 1, 1)
+            plt.title(shot_num)
             plt.ylabel('ELM frequency (Hz)')
             plt.xlim(begin_time, end_time)
 
@@ -188,6 +189,7 @@ if __name__ == '__main__':
                 plt.scatter(t[index], x[index], s=40, facecolors='none', edgecolors=colors[i])
                 plt.subplot(2, 1, 1)
                 plt.scatter(t[index], f_elm, s=40, facecolors='none', edgecolors=colors[i])
+                plt.title(shot_num)
 
 
         else:
@@ -198,6 +200,7 @@ if __name__ == '__main__':
             plt.ylabel(signal)
             plt.xlim(begin_time, end_time)
             plt.plot(t, xbase, color='b', linewidth=2)
+            plt.title(shot_num)
 
 
     else:
@@ -229,6 +232,7 @@ if __name__ == '__main__':
             plt.ylabel('ELM frequency (Hz)')
             plt.xlim(begin_time, end_time)
             plt.subplot(3, 1, 1)
+            plt.title(shot_num)
             plt.ylabel(r'ELM $\delta$w (kJ)')
             plt.xlim(begin_time, end_time)
 
@@ -257,6 +261,7 @@ if __name__ == '__main__':
                 # plt.plot(timerange, [np.mean(f_elm), np.mean(f_elm)], c=colors[i], linestyle="--")
                 plt.subplot(3, 1, 1)
                 plt.scatter(t[index], dw_elm, s=40, facecolors='none', edgecolors=colors[i], marker='v')
+                plt.title(shot_num)
                 # plt.plot(timerange, [np.mean(dw_elm), np.mean(dw_elm)], c=colors[i], linestyle="--")
 
 
@@ -268,6 +273,7 @@ if __name__ == '__main__':
             plt.ylabel(signal)
             plt.xlim(begin_time, end_time)
             plt.plot(t, xbase, color='b', linewidth=2)
+            plt.title(shot_num)
 
 
 

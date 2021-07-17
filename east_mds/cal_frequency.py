@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-16 09:01:57
 Github: https://github.com/bcao19
 LastEditors: caobin
-LastEditTime: 2021-07-17 20:04:25
+LastEditTime: 2021-07-17 20:18:06
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -128,7 +128,7 @@ if __name__ == '__main__':
 
 
     plt.figure()
-    plt.pcolormesh(tf, f, Zxx, vmin=vmin, vmax=vmax, cmap='jet')
+    plt.pcolormesh(tf, f, Zxx, vmin=vmin, vmax=vmax, cmap='jet', shading='gouraud')
     plt.title(shot_num)
     plt.ylabel(signal+' [kHz]')
     plt.xlabel('Time [sec]')

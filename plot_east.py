@@ -133,6 +133,7 @@ def plot_data():
     i = 0
     colors = ['b', 'r', 'g', 'k', 'y']
     n = len(signals)
+    ax = [0]
     for signal in signals:
         tree = trees[i]
         i = i+1
@@ -184,18 +185,26 @@ def plot_data():
             
             
             
-            plt.subplot(n, 1, i)
+            tmp = plt.subplot(n, 1, i)
+            ax.append(tmp)
             if i==1:
-                plt.plot(t, y, color=color, label=str(shot))
-                plt.legend()
-                plt.grid()
+                tmp.plot(t, y, color=color, label=str(shot))
+                tmp.legend()
+                tmp.grid()
+                plt.xlim([begin, end])
             else:
-                plt.plot(t, y, color=color)
-                plt.grid()
+                tmp.plot(t, y, color=color)
+                tmp.grid()
+                plt.xlim([begin, end])
+                ax[i].get_shared_x_axes().join(ax[i], ax[i-1])
+                ax[i].set_xticklabels([])
+                
             if j==1:
                 if i==n:
                     plt.xlabel('time (s)')
                 plt.ylabel(signal)
+                plt.xlim([begin, end])
+                
             # if i==1:
             #     tmp = 1.1*np.max(y)
             #     locationY
