@@ -129,11 +129,14 @@ def plot_data():
     plt.figure(figsize=(9, 12))
 
     [shots, signals, trees, begin, end, low_filter, up_filter] = get_input()
+    # signals = list(reversed(signals))
 
     i = 0
     colors = ['b', 'r', 'g', 'k', 'y']
     n = len(signals)
-    ax = [0]
+    m = len(shots)
+    # ax = [0]
+    # fig=plt.figure()
     for signal in signals:
         tree = trees[i]
         i = i+1
@@ -183,27 +186,97 @@ def plot_data():
                 temp = 2e4*temp
                 y = list(temp)
             
-            
-            
-            tmp = plt.subplot(n, 1, i)
-            ax.append(tmp)
-            if i==1:
-                tmp.plot(t, y, color=color, label=str(shot))
-                tmp.legend()
-                tmp.grid()
-                plt.xlim([begin, end])
-            else:
-                tmp.plot(t, y, color=color)
-                tmp.grid()
-                plt.xlim([begin, end])
-                ax[i].get_shared_x_axes().join(ax[i], ax[i-1])
-                ax[i].set_xticklabels([])
+
+            if i == 1:
+                if j == 1:
+                    plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
+                    plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
+                    ax1 = plt.subplot(n, 1, i)
+                    plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
+                    plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
+                    plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+                    plt.subplots_adjust(wspace =0, hspace =0)
+                    
+                    plt.ylabel(signal)
+                    plt.xlim([begin, end])
+                    
+                ax1.plot(t, y, color=color, label=str(shot))
                 
-            if j==1:
-                if i==n:
+                ax1.legend()
+                
+                
+                
+                
+
+            # elif i == n:
+            #     ax2 = plt.subplot(n, 1, i, sharex=ax1)
+            #     ax2.plot(t, y, color=color, label=str(shot))
+            #     plt.xlim([begin, end])
+            #     ax2.legend()
+            
+            elif i == n:
+                if j == 1:
+                    ax2 = plt.subplot(n, 1, i, sharex=ax1)
+                    plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
+                    plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
+                    plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='on',labelleft='on',labelright='off')
+                    
+                    plt.subplots_adjust(wspace =0, hspace =0)
+                    
+                    plt.ylabel(signal)
                     plt.xlabel('time (s)')
-                plt.ylabel(signal)
-                plt.xlim([begin, end])
+                    plt.xlim([begin, end])
+                    ax1 = ax2
+
+                ax1.plot(t, y, color=color)
+                
+                
+                
+                
+                # plt.tick_params(labeltop='off',labelbottom='off',labelleft='off',labelright='off')
+                
+                
+            else:
+                if j == 1:
+                    ax2 = plt.subplot(n, 1, i, sharex=ax1)
+                    plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
+                    plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
+                    plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+                    plt.subplots_adjust(wspace =0, hspace =0)
+                    
+                    plt.ylabel(signal)
+                    plt.xlim([begin, end])
+                    ax1 = ax2
+                ax1.plot(t, y, color=color)
+                
+                # if j == m:
+                #     ax1 = ax2
+                
+                
+                
+
+                
+            # if i==n:
+            #     tmp.plot(t, y, color=color, label=str(shot))
+            #     tmp.legend()
+            #     # tmp.grid()
+            #     plt.xlim([begin, end])
+            #     ax[i].get_shared_x_axes().join(ax[i], ax[i-1])
+            #     ax[i].set_xticklabels([])
+            # elif i == 1:
+            #     tmp.plot(t, y, color=color)
+            #     # tmp.grid()
+            #     plt.xlim([begin, end])
+            # else:
+            #     tmp.plot(t, y, color=color)
+            #     tmp.grid()
+            #     plt.xlim([begin, end])
+            #     ax[i].get_shared_x_axes().join(ax[i], ax[i-1])
+            #     ax[i].set_xticklabels([])
+                
+                    
+                
+                
                 
             # if i==1:
             #     tmp = 1.1*np.max(y)
