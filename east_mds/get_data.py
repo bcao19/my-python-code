@@ -2,7 +2,7 @@
 Author       : caobin
 Date         : 2021-05-12 09:40:00
 LastEditors: caobin
-LastEditTime: 2021-07-13 21:00:20
+LastEditTime: 2021-07-20 15:04:29
 FilePath     : \my-python-code\east_mds\get_data.py
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
@@ -48,6 +48,11 @@ def data(signal, shot, **kw):
 	if 'medfilt' in kw:
 		n = kw['medfilt']
 		x = sig.medfilt(x, n)
+
+
+	if 'move' in kw:
+		move = kw['move']
+		t = t-move
 
 
 	return t, x

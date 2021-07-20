@@ -23,7 +23,7 @@ from east_mds import  filter
 
 window=tk.Tk() #创建Tk对象
 window.title("plot shot signal") #设置窗口标题
-window.geometry("275x300") #设置窗口尺寸
+window.geometry("575x300") #设置窗口尺寸
 names = locals()
 names['shot0'] = tk.Label(window,text="shot", height=1) #标签
 names['shot0'].place(x=20, y=10) #指定包管理器放置组件
@@ -48,6 +48,33 @@ names['tree0'].place(x=200, y=10) #指定包管理器放置组件
 for i in range(1, 8):
     names['tree'+str(i)] = tk.Entry()
     names['tree'+str(i)].place(x=180, y=10+25*i, width=80)
+
+
+
+names['label0'] = tk.Label(window,text="label", height=1) #标签
+names['label0'].place(x=300, y=10) #指定包管理器放置组件
+
+for i in range(1, 8):
+    names['label'+str(i)] = tk.Entry()
+    names['label'+str(i)].place(x=280, y=10+25*i, width=80)
+
+
+names['process0'] = tk.Label(window,text="process", height=1) #标签
+names['process0'].place(x=400, y=10) #指定包管理器放置组件
+
+for i in range(1, 8):
+    names['process'+str(i)] = tk.Entry()
+    names['process'+str(i)].place(x=380, y=10+25*i, width=80)
+
+
+names['parameter0'] = tk.Label(window,text="parameter", height=1) #标签
+names['parameter0'].place(x=495, y=10) #指定包管理器放置组件
+
+for i in range(1, 8):
+    names['parameter'+str(i)] = tk.Entry()
+    names['parameter'+str(i)].place(x=480, y=10+25*i, width=80)
+
+
 
 tmp = tk.Label(window, text='begin')
 tmp.place(x=10, y=230)
@@ -74,6 +101,9 @@ def get_input():
     shots = []
     signals = []
     trees = []
+    labels = []
+    processes = []
+    parameters = []
 
     for i in range(1, 6):
         shot = names['shot'+str(i)].get()
@@ -92,6 +122,9 @@ def get_input():
     for i in range(1, 8):
         signal = names['signal'+str(i)].get()
         tree = names['tree'+str(i)].get()
+        label = names['label'+str(i)].get()
+        process = names['process'+str(i)].get()
+        parameter = names['parameter'+str(i)].get()
 
         if len(signal)>0:
             signals.append(signal)
@@ -99,6 +132,25 @@ def get_input():
                 trees.append('east_1')
             else:
                 trees.append(tree)
+
+            if len(label) == 0:
+                labels.append(signal)
+            else:
+                labels.append(label)
+
+            if len(process) == 0:
+                processes.append('None')
+                parameters.append('None')
+            else:
+                processes.append(process)
+                if len(parameter) == 0:
+                    parameters.append('None')
+                else:
+                    parameter_list=parameter.split(",")
+                    parameter = [float(parameter_list[i]) for i in range(len(parameter_list))]
+                    parameters.append(parameter)
+
+
 
     begin_time = begin.get()
     end_time = end.get()
@@ -120,7 +172,7 @@ def get_input():
     up_frequency= int(up_frequency)
     
 
-    return shots, signals, trees, begin_time, end_time, low_frequency, up_frequency
+    return shots, signals, trees, begin_time, end_time, low_frequency, up_frequency, labels, processes, parameters
 
 
 
@@ -128,8 +180,10 @@ def plot_data():
 
     plt.figure(figsize=(9, 12))
 
-    [shots, signals, trees, begin, end, low_filter, up_filter] = get_input()
+    [shots, signals, trees, begin, end, low_filter, up_filter, labels, processes, parameters] = get_input()
     # signals = list(reversed(signals))
+    # print(processes)
+    # print(parameters)
 
     i = 0
     colors = ['b', 'r', 'g', 'k', 'y']
@@ -139,6 +193,9 @@ def plot_data():
     # fig=plt.figure()
     for signal in signals:
         tree = trees[i]
+        slabel = labels[i]
+        process = processes[i]
+        parameter = parameters[i]
         i = i+1
         j = 0
         for shot in shots:
@@ -194,10 +251,14 @@ def plot_data():
                     ax1 = plt.subplot(n, 1, i)
                     plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
                     plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
-                    plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+                    if (n-i)&1:
+                        plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='off',labelright='on')
+                        ax1.yaxis.set_label_position("right") 
+                    else:
+                        plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='off',labelleft='on',labelright='off')
                     plt.subplots_adjust(wspace =0, hspace =0)
                     
-                    plt.ylabel(signal)
+                    plt.ylabel(slabel)
                     plt.xlim([begin, end])
                     
                 ax1.plot(t, y, color=color, label=str(shot))
@@ -219,11 +280,12 @@ def plot_data():
                     ax2 = plt.subplot(n, 1, i, sharex=ax1)
                     plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
                     plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
+                    
                     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='on',labelleft='on',labelright='off')
                     
                     plt.subplots_adjust(wspace =0, hspace =0)
                     
-                    plt.ylabel(signal)
+                    plt.ylabel(slabel)
                     plt.xlabel('time (s)')
                     plt.xlim([begin, end])
                     ax1 = ax2
@@ -241,10 +303,14 @@ def plot_data():
                     ax2 = plt.subplot(n, 1, i, sharex=ax1)
                     plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
                     plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
-                    plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+                    if (n-i)&1:
+                        plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='off',labelright='on')
+                        ax2.yaxis.set_label_position("right") 
+                    else:
+                        plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelright='off')
                     plt.subplots_adjust(wspace =0, hspace =0)
                     
-                    plt.ylabel(signal)
+                    plt.ylabel(slabel)
                     plt.xlim([begin, end])
                     ax1 = ax2
                 ax1.plot(t, y, color=color)
