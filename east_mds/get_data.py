@@ -55,6 +55,12 @@ def data(signal, shot, **kw):
 		t = t-move
 
 
+	if 'smooth' in kw:
+		win = kw['smooth'][0]
+		k = kw['smooth'][1]
+		x = sig.savgol_filter(x, win, k)
+
+
 	return t, x
 
 

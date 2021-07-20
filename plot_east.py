@@ -196,12 +196,24 @@ def plot_data():
         slabel = labels[i]
         process = processes[i]
         parameter = parameters[i]
+        
         i = i+1
         j = 0
         for shot in shots:
             color = colors[j]
+            if process == 'move':
+                [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], move=parameter[j])
+            elif process == 'medfilt':
+                [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], medfilt=int(parameter[j]))
+            elif process == 'smooth':
+                parameter = list(map(int, parameter))
+                [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], smooth=parameter)
+            else:
+                [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end])
+
             j = j+1
-            [t, y] = get.data(signal, shot, tree=tree)
+
+            
 
             # if shot == 98346:
             #     temp = np.array(t)
@@ -213,9 +225,9 @@ def plot_data():
             #     temp = temp-5.5
             #     t = temp
             
-            index = np.where((t>=begin)&(t<=end))            
-            t = t[index]
-            y = y[index]
+            # index = np.where((t>=begin)&(t<=end))            
+            # t = t[index]
+            # y = y[index]
 
 
             if up_filter != 0:
@@ -244,6 +256,8 @@ def plot_data():
                 y = list(temp)
             
 
+            
+            
             if i == 1:
                 if j == 1:
                     plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
@@ -256,25 +270,19 @@ def plot_data():
                         ax1.yaxis.set_label_position("right") 
                     else:
                         plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+                    if n == 1:
+                        plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='on',labelleft='on',labelright='off')
                     plt.subplots_adjust(wspace =0, hspace =0)
                     
                     plt.ylabel(slabel)
-                    plt.xlim([begin, end])
+                    # plt.xlim([begin, end])
                     
                 ax1.plot(t, y, color=color, label=str(shot))
                 
                 ax1.legend()
-                
-                
-                
-                
 
-            # elif i == n:
-            #     ax2 = plt.subplot(n, 1, i, sharex=ax1)
-            #     ax2.plot(t, y, color=color, label=str(shot))
-            #     plt.xlim([begin, end])
-            #     ax2.legend()
-            
+
+
             elif i == n:
                 if j == 1:
                     ax2 = plt.subplot(n, 1, i, sharex=ax1)
@@ -287,7 +295,7 @@ def plot_data():
                     
                     plt.ylabel(slabel)
                     plt.xlabel('time (s)')
-                    plt.xlim([begin, end])
+                    # plt.xlim([begin, end])
                     ax1 = ax2
 
                 ax1.plot(t, y, color=color)
@@ -296,6 +304,18 @@ def plot_data():
                 
                 
                 # plt.tick_params(labeltop='off',labelbottom='off',labelleft='off',labelright='off')
+                
+                
+                
+                
+
+            # elif i == n:
+            #     ax2 = plt.subplot(n, 1, i, sharex=ax1)
+            #     ax2.plot(t, y, color=color, label=str(shot))
+            #     plt.xlim([begin, end])
+            #     ax2.legend()
+            
+            
                 
                 
             else:
@@ -311,7 +331,7 @@ def plot_data():
                     plt.subplots_adjust(wspace =0, hspace =0)
                     
                     plt.ylabel(slabel)
-                    plt.xlim([begin, end])
+                    # plt.xlim([begin, end])
                     ax1 = ax2
                 ax1.plot(t, y, color=color)
                 
