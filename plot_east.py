@@ -201,11 +201,11 @@ def plot_data():
         j = 0
         for shot in shots:
             color = colors[j]
-            print(signal[: 3])
+            # print(signal[: 3])
             if signal[:4] == 'get_':
                 from importlib import import_module
-                get = import_module(signal)
-                [t, y] = get.read(shot, [begin, end])
+                read = import_module(signal)
+                [t, y] = read.read(shot, [begin, end])
             elif process == 'move':
                 [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], move=parameter[j])
             elif process == 'medfilt':
@@ -213,6 +213,10 @@ def plot_data():
             elif process == 'smooth':
                 parameter = list(map(int, parameter))
                 [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], smooth=parameter)
+            elif process == 'zoom':
+                [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], zoom=parameter)
+            elif process == 'log':
+                [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], log=parameter)
             else:
                 [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end])
 

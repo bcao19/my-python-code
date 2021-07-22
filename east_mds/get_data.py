@@ -1,8 +1,8 @@
 '''
 Author       : caobin
 Date         : 2021-05-12 09:40:00
-LastEditors: caobin
-LastEditTime: 2021-07-20 15:04:29
+LastEditors  : caobin
+LastEditTime : 2021-07-22 14:33:33
 FilePath     : \my-python-code\east_mds\get_data.py
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
@@ -60,6 +60,18 @@ def data(signal, shot, **kw):
 		k = kw['smooth'][1]
 		x = sig.savgol_filter(x, win, k)
 
+	if 'zoom' in kw:
+		n = kw['zoom']
+		x = n*x
+
+	if 'log' in kw:
+		x = np.abs(x)
+		if kw['log'] == 10:
+			x = np.log10(x)
+		elif kw['log'] == 2:
+			x = np.log2(x)
+		else:
+			x = np.log(x)
 
 	return t, x
 
