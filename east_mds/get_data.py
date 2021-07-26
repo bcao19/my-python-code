@@ -1,4 +1,12 @@
 '''
+Description: 
+Author: caobin
+Date: 2021-07-26 21:09:30
+Github: https://github.com/bcao19
+LastEditors: caobin
+LastEditTime: 2021-07-26 23:19:23
+'''
+'''
 Author       : caobin
 Date         : 2021-05-12 09:40:00
 LastEditors: caobin
@@ -59,6 +67,18 @@ def data(signal, shot, **kw):
 		win = kw['smooth'][0]
 		k = kw['smooth'][1]
 		x = sig.savgol_filter(x, win, k)
+
+	if 'log' in kw:
+		if kw['log'] == 10:
+			x = np.log10(x)
+		elif kw['log'] == 2:
+			x = np.log2(x)
+		else:
+			x = np.log(x)
+
+	if 'zoom' in kw:
+		n = kw['zoom']
+		x = n*x
 
 
 	return t, x
