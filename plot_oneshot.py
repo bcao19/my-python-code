@@ -3,8 +3,8 @@ Description:
 Author: caobin
 Date: 2021-07-26 22:01:31
 Github: https://github.com/bcao19
-LastEditors: caobin
-LastEditTime: 2021-07-26 22:01:32
+LastEditors  : caobin
+LastEditTime : 2021-07-27 03:38:31
 '''
 '''
 Description: 
@@ -330,11 +330,19 @@ def plot_data():
         tree = trees1[i]
         slabel = labels1[i]
         zoom = zooms1[i]
+        signal2 = signals2[i]
+        tree2 = trees2[i]
+        slabel2 = labels2[i]
+        zoom2 = zooms2[i]
+        signal3 = signals3[i]
+        tree3 = trees3[i]
+        slabel3 = labels3[i]
+        zoom3 = zooms3[i]
         
         i = i+1
         
         color = colors[0]
-
+        # print(signal)
 
         [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], zoom=zoom)
 
@@ -406,6 +414,13 @@ def plot_data():
                 # plt.xlim([begin, end])
                 
             ax1.plot(t, y, color=color, label=slabel)
+            if signal2 != '0':
+                print(signal2)
+                [t2, y2] = get.data(signal2, shot, tree=tree2, timerange=[begin, end], zoom=zoom2)
+                ax1.plot(t2, y2, color=colors[1], label=slabel2)
+            if signal3 != '0':
+                [t3, y3] = get.data(signal3, shot, tree=tree3, timerange=[begin, end], zoom=zoom3)
+                ax1.plot(t3, y3, color=colors[2], label=slabel3)
             
             ax1.legend()
 
@@ -428,6 +443,12 @@ def plot_data():
             ax1 = ax2
 
             ax1.plot(t, y, color=color, label=slabel)
+            if signal2 != '0':
+                [t2, y2] = get.data(signal2, shot, tree=tree2, timerange=[begin, end], zoom=zoom2)
+                ax1.plot(t2, y2, color=colors[1], label=slabel2)
+            if signal3 != '0':
+                [t3, y3] = get.data(signal3, shot, tree=tree3, timerange=[begin, end], zoom=zoom3)
+                ax1.plot(t3, y3, color=colors[2], label=slabel3)
             ax1.legend()
             
             
@@ -466,6 +487,12 @@ def plot_data():
                 # plt.xlim([begin, end])
             ax1 = ax2
             ax1.plot(t, y, color=color, label=slabel)
+            if signal2 != '0':
+                [t2, y2] = get.data(signal2, shot, tree=tree2, timerange=[begin, end], zoom=zoom2)
+                ax1.plot(t2, y2, color=colors[1], label=slabel2)
+            if signal3 != '0':
+                [t3, y3] = get.data(signal3, shot, tree=tree3, timerange=[begin, end], zoom=zoom3)
+                ax1.plot(t3, y3, color=colors[2], label=slabel3)
             ax1.legend()
             
             # if j == m:
@@ -503,301 +530,301 @@ def plot_data():
         #     locationX = begin+(end-begin)/6*j
         #     plt.text(locationX, locationY, str(shot), color=color, fontsize=12)
 
-    i = 0
-    n = len(signals2)
+    # i = 0
+    # n = len(signals2)
     
-    for signal in signals2:
-        tree = trees2[i]
-        slabel = labels2[i]
+    # for signal in signals2:
+    #     tree = trees2[i]
+    #     slabel = labels2[i]
             
-        i = i+1
-        if signal != '0':
+    #     i = i+1
+    #     plt.subplot(n, 1, i)
+    #     if signal != '0':
             
             
             
-            color = colors[1]
+    #         color = colors[1]
 
-            print(signal)
-            print(shot)
-            print(tree)
-            [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], zoom=zoom)
+            
+    #         [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], zoom=zoom)
 
 
                 
 
-                # if shot == 98346:
-                #     temp = np.array(t)
-                #     temp = temp-7
-                #     t = temp
+    #             # if shot == 98346:
+    #             #     temp = np.array(t)
+    #             #     temp = temp-7
+    #             #     t = temp
 
-                # if shot == 98351:
-                #     temp =np.array(t)
-                #     temp = temp-5.5
-                #     t = temp
+    #             # if shot == 98351:
+    #             #     temp =np.array(t)
+    #             #     temp = temp-5.5
+    #             #     t = temp
                 
-                # index = np.where((t>=begin)&(t<=end))            
-                # t = t[index]
-                # y = y[index]
+    #             # index = np.where((t>=begin)&(t<=end))            
+    #             # t = t[index]
+    #             # y = y[index]
 
 
-            if up_filter != 0:
-                fs = 100/(t[100]-t[0])
-                fs = int(fs)
-                if low_filter == 0:
-                    y = filter.high_pass(y, up_filter, fs)
-                elif up_filter >= 0.5*fs:
-                    y = filter.low_pass(y, low_filter, fs)
-                else:
-                    y = filter.band_stop(y, low_filter, up_filter, fs)
+    #         if up_filter != 0:
+    #             fs = 100/(t[100]-t[0])
+    #             fs = int(fs)
+    #             if low_filter == 0:
+    #                 y = filter.high_pass(y, up_filter, fs)
+    #             elif up_filter >= 0.5*fs:
+    #                 y = filter.low_pass(y, low_filter, fs)
+    #             else:
+    #                 y = filter.band_stop(y, low_filter, up_filter, fs)
             
             
-            judge = signal[0:2]
-            if judge == "G1":
-                temp = np.array(y)
-                temp = 10**(temp*1.667-9.333)
-                y = list(temp)
-            elif judge == "PA" or judge == "PJ":
-                temp = np.array(y)
-                temp = 2e3*temp
-                y = list(temp)
-            elif judge == "PP" or judge == "PD":
-                temp = np.array(y)
-                temp = 2e4*temp
-                y = list(temp)
+    #         judge = signal[0:2]
+    #         if judge == "G1":
+    #             temp = np.array(y)
+    #             temp = 10**(temp*1.667-9.333)
+    #             y = list(temp)
+    #         elif judge == "PA" or judge == "PJ":
+    #             temp = np.array(y)
+    #             temp = 2e3*temp
+    #             y = list(temp)
+    #         elif judge == "PP" or judge == "PD":
+    #             temp = np.array(y)
+    #             temp = 2e4*temp
+    #             y = list(temp)
             
 
             
             
-            if i == 1:
+    #         if i == 1:
 
-                plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
-                plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
-                ax1 = plt.subplot(n, 1, i)
+    #             plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
+    #             plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
+    #             ax1 = plt.subplot(n, 1, i)
                     
-                plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
-                plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
-                plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='off',labelleft='on',labelright='off')
-                    # if (n-i)&1:
-                    #     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='off',labelright='on')
-                    #     ax1.yaxis.set_label_position("right") 
-                    # else:
-                    #     plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='off',labelleft='on',labelright='off')
-                if n == 1:
-                    plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='on',labelleft='on',labelright='off')
-                plt.subplots_adjust(wspace =0, hspace =0.03*n)
-                ax1.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
-                # plt.ylabel(slabel)
-                    # plt.xlim([begin, end])
+    #             plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
+    #             plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
+    #             plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+    #                 # if (n-i)&1:
+    #                 #     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='off',labelright='on')
+    #                 #     ax1.yaxis.set_label_position("right") 
+    #                 # else:
+    #                 #     plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+    #             if n == 1:
+    #                 plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='on',labelleft='on',labelright='off')
+    #             plt.subplots_adjust(wspace =0, hspace =0.03*n)
+    #             ax1.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
+    #             # plt.ylabel(slabel)
+    #                 # plt.xlim([begin, end])
                     
-                ax1.plot(t, y, color=color, label=slabel)
+    #             ax1.plot(t, y, color=color, label=slabel)
                 
-                ax1.legend()
+    #             ax1.legend()
 
 
 
-            elif i == n:
+    #         elif i == n:
                 
-                ax2 = plt.subplot(n, 1, i, sharex=ax1)
+    #             ax2 = plt.subplot(n, 1, i, sharex=ax1)
                     
-                plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
-                plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
+    #             plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
+    #             plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
                     
-                plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='on',labelleft='on',labelright='off')
+    #             plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='on',labelleft='on',labelright='off')
                     
-                plt.subplots_adjust(wspace =0, hspace =0.03*n)
-                ax2.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
-                # plt.ylabel(slabel)
-                plt.xlabel('time (s)')
-                    # plt.xlim([begin, end])
-                ax1 = ax2
+    #             plt.subplots_adjust(wspace =0, hspace =0.03*n)
+    #             ax2.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
+    #             # plt.ylabel(slabel)
+    #             plt.xlabel('time (s)')
+    #                 # plt.xlim([begin, end])
+    #             ax1 = ax2
 
-                ax1.plot(t, y, color=color, label=slabel)
-                ax1.legend()
+    #             ax1.plot(t, y, color=color, label=slabel)
+    #             ax1.legend()
                 
                 
                 
                 
-                # plt.tick_params(labeltop='off',labelbottom='off',labelleft='off',labelright='off')
+    #             # plt.tick_params(labeltop='off',labelbottom='off',labelleft='off',labelright='off')
                 
                 
                 
                 
 
-            # elif i == n:
-            #     ax2 = plt.subplot(n, 1, i, sharex=ax1)
-            #     ax2.plot(t, y, color=color, label=str(shot))
-            #     plt.xlim([begin, end])
-            #     ax2.legend()
+    #         # elif i == n:
+    #         #     ax2 = plt.subplot(n, 1, i, sharex=ax1)
+    #         #     ax2.plot(t, y, color=color, label=str(shot))
+    #         #     plt.xlim([begin, end])
+    #         #     ax2.legend()
             
             
                 
                 
-            else:
+    #         else:
 
-                ax2 = plt.subplot(n, 1, i, sharex=ax1)
+    #             ax2 = plt.subplot(n, 1, i, sharex=ax1)
                     
-                plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
-                plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
-                    # if (n-i)&1:
-                    #     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='off',labelright='on')
-                    #     ax2.yaxis.set_label_position("right") 
-                    # else:
-                    #     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelright='off')
-                plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelright='off')
-                plt.subplots_adjust(wspace =0, hspace =0.03*n)
-                ax2.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
-                # plt.ylabel(slabel)
-                    # plt.xlim([begin, end])
-                ax1 = ax2
-                ax1.plot(t, y, color=color, label=slabel)
-                ax1.legend()
+    #             plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
+    #             plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
+    #                 # if (n-i)&1:
+    #                 #     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='off',labelright='on')
+    #                 #     ax2.yaxis.set_label_position("right") 
+    #                 # else:
+    #                 #     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+    #             plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+    #             plt.subplots_adjust(wspace =0, hspace =0.03*n)
+    #             ax2.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
+    #             # plt.ylabel(slabel)
+    #                 # plt.xlim([begin, end])
+    #             ax1 = ax2
+    #             ax1.plot(t, y, color=color, label=slabel)
+    #             ax1.legend()
 
-    i = 0
-    n = len(signals3)
+    # i = 0
+    # n = len(signals3)
     
 
-    for signal in signals3:
-        tree = trees3[i]
-        slabel = labels3[i]
+    # for signal in signals3:
+    #     tree = trees3[i]
+    #     slabel = labels3[i]
             
-        i = i+1
-        if signal != '0':
+    #     i = i+1
+    #     plt.subplot(n, 1, i)
+    #     if signal != '0':
             
             
-            color = colors[2]
+    #         color = colors[2]
 
                 
-            [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], zoom=zoom)
+    #         [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], zoom=zoom)
 
 
                 
 
-                # if shot == 98346:
-                #     temp = np.array(t)
-                #     temp = temp-7
-                #     t = temp
+    #             # if shot == 98346:
+    #             #     temp = np.array(t)
+    #             #     temp = temp-7
+    #             #     t = temp
 
-                # if shot == 98351:
-                #     temp =np.array(t)
-                #     temp = temp-5.5
-                #     t = temp
+    #             # if shot == 98351:
+    #             #     temp =np.array(t)
+    #             #     temp = temp-5.5
+    #             #     t = temp
                 
-                # index = np.where((t>=begin)&(t<=end))            
-                # t = t[index]
-                # y = y[index]
+    #             # index = np.where((t>=begin)&(t<=end))            
+    #             # t = t[index]
+    #             # y = y[index]
 
 
-            if up_filter != 0:
-                fs = 100/(t[100]-t[0])
-                fs = int(fs)
-                if low_filter == 0:
-                    y = filter.high_pass(y, up_filter, fs)
-                elif up_filter >= 0.5*fs:
-                    y = filter.low_pass(y, low_filter, fs)
-                else:
-                    y = filter.band_stop(y, low_filter, up_filter, fs)
+    #         if up_filter != 0:
+    #             fs = 100/(t[100]-t[0])
+    #             fs = int(fs)
+    #             if low_filter == 0:
+    #                 y = filter.high_pass(y, up_filter, fs)
+    #             elif up_filter >= 0.5*fs:
+    #                 y = filter.low_pass(y, low_filter, fs)
+    #             else:
+    #                 y = filter.band_stop(y, low_filter, up_filter, fs)
             
             
-            judge = signal[0:2]
-            if judge == "G1":
-                temp = np.array(y)
-                temp = 10**(temp*1.667-9.333)
-                y = list(temp)
-            elif judge == "PA" or judge == "PJ":
-                temp = np.array(y)
-                temp = 2e3*temp
-                y = list(temp)
-            elif judge == "PP" or judge == "PD":
-                temp = np.array(y)
-                temp = 2e4*temp
-                y = list(temp)
+    #         judge = signal[0:2]
+    #         if judge == "G1":
+    #             temp = np.array(y)
+    #             temp = 10**(temp*1.667-9.333)
+    #             y = list(temp)
+    #         elif judge == "PA" or judge == "PJ":
+    #             temp = np.array(y)
+    #             temp = 2e3*temp
+    #             y = list(temp)
+    #         elif judge == "PP" or judge == "PD":
+    #             temp = np.array(y)
+    #             temp = 2e4*temp
+    #             y = list(temp)
             
 
             
             
-            if i == 1:
+    #         if i == 1:
 
-                plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
-                plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
-                ax1 = plt.subplot(n, 1, i)
+    #             plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
+    #             plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
+    #             ax1 = plt.subplot(n, 1, i)
                     
-                plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
-                plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
-                plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='off',labelleft='on',labelright='off')
-                    # if (n-i)&1:
-                    #     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='off',labelright='on')
-                    #     ax1.yaxis.set_label_position("right") 
-                    # else:
-                    #     plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='off',labelleft='on',labelright='off')
-                if n == 1:
-                    plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='on',labelleft='on',labelright='off')
-                plt.subplots_adjust(wspace =0, hspace =0.03*n)
-                ax1.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
-                # plt.ylabel(slabel)
-                    # plt.xlim([begin, end])
+    #             plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
+    #             plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
+    #             plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+    #                 # if (n-i)&1:
+    #                 #     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='off',labelright='on')
+    #                 #     ax1.yaxis.set_label_position("right") 
+    #                 # else:
+    #                 #     plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+    #             if n == 1:
+    #                 plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='on',labelleft='on',labelright='off')
+    #             plt.subplots_adjust(wspace =0, hspace =0.03*n)
+    #             ax1.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
+    #             # plt.ylabel(slabel)
+    #                 # plt.xlim([begin, end])
                     
-                ax1.plot(t, y, color=color, label=slabel)
+    #             ax1.plot(t, y, color=color, label=slabel)
                 
-                ax1.legend()
+    #             ax1.legend()
 
 
 
-            elif i == n:
+    #         elif i == n:
                 
-                ax2 = plt.subplot(n, 1, i, sharex=ax1)
+    #             ax2 = plt.subplot(n, 1, i, sharex=ax1)
                     
-                plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
-                plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
+    #             plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
+    #             plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
                     
-                plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='on',labelleft='on',labelright='off')
+    #             plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='on',labelleft='on',labelright='off')
                     
-                plt.subplots_adjust(wspace =0, hspace =0.03*n)
-                ax2.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
-                # plt.ylabel(slabel)
-                plt.xlabel('time (s)')
-                    # plt.xlim([begin, end])
-                ax1 = ax2
+    #             plt.subplots_adjust(wspace =0, hspace =0.03*n)
+    #             ax2.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
+    #             # plt.ylabel(slabel)
+    #             plt.xlabel('time (s)')
+    #                 # plt.xlim([begin, end])
+    #             ax1 = ax2
 
-                ax1.plot(t, y, color=color, label=slabel)
-                ax1.legend()
+    #             ax1.plot(t, y, color=color, label=slabel)
+    #             ax1.legend()
                 
                 
                 
                 
-                # plt.tick_params(labeltop='off',labelbottom='off',labelleft='off',labelright='off')
+    #             # plt.tick_params(labeltop='off',labelbottom='off',labelleft='off',labelright='off')
                 
                 
                 
                 
 
-            # elif i == n:
-            #     ax2 = plt.subplot(n, 1, i, sharex=ax1)
-            #     ax2.plot(t, y, color=color, label=str(shot))
-            #     plt.xlim([begin, end])
-            #     ax2.legend()
+    #         # elif i == n:
+    #         #     ax2 = plt.subplot(n, 1, i, sharex=ax1)
+    #         #     ax2.plot(t, y, color=color, label=str(shot))
+    #         #     plt.xlim([begin, end])
+    #         #     ax2.legend()
             
             
                 
                 
-            else:
+    #         else:
 
-                ax2 = plt.subplot(n, 1, i, sharex=ax1)
+    #             ax2 = plt.subplot(n, 1, i, sharex=ax1)
                     
-                plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
-                plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
-                    # if (n-i)&1:
-                    #     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='off',labelright='on')
-                    #     ax2.yaxis.set_label_position("right") 
-                    # else:
-                    #     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelright='off')
-                plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelright='off')
-                plt.subplots_adjust(wspace =0, hspace =0.03*n)
-                ax2.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
-                plt.ylabel(slabel)
-                    # plt.xlim([begin, end])
-                ax1 = ax2
-                ax1.plot(t, y, color=color, label=slabel)
-                ax1.legend()
+    #             plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
+    #             plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
+    #                 # if (n-i)&1:
+    #                 #     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='off',labelright='on')
+    #                 #     ax2.yaxis.set_label_position("right") 
+    #                 # else:
+    #                 #     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+    #             plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+    #             plt.subplots_adjust(wspace =0, hspace =0.03*n)
+    #             ax2.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
+    #             plt.ylabel(slabel)
+    #                 # plt.xlim([begin, end])
+    #             ax1 = ax2
+    #             ax1.plot(t, y, color=color, label=slabel)
+    #             ax1.legend()
 
     
 
