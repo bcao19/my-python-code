@@ -235,39 +235,51 @@ def get_input():
             else:
                 zooms1.append(float(zoom1))
 
-        if len(signal2)>0:
-            signals2.append(signal2)
-            if len(tree2) == 0:
-                trees2.append('east_1')
-            else:
-                trees2.append(tree2)
+            if len(signal2)>0:
+                signals2.append(signal2)
+                if len(tree2) == 0:
+                    trees2.append('east_1')
+                else:
+                    trees2.append(tree2)
 
-            if len(label2) == 0:
-                labels2.append(signal2)
-            else:
-                labels2.append(label2)  
+                if len(label2) == 0:
+                    labels2.append(signal2)
+                else:
+                    labels2.append(label2)
 
-            if len(zoom2) == 0:
-                zooms2.append(1)
+                if len(zoom2) == 0:
+                    zooms2.append(1)
+                else:
+                    zooms2.append(float(zoom2))
             else:
-                zooms2.append(float(zoom2))
+                signals2.append('0')
+                trees2.append('0')
+                labels2.append('0')
+                zooms2.append(0)
 
-        if len(signal3)>0:
-            signals3.append(signal3)
-            if len(tree3) == 0:
-                trees3.append('east_1')
-            else:
-                trees3.append(tree3)
-
-            if len(label3) == 0:
-                labels3.append(signal3)
-            else:
-                labels3.append(label3)
             
-            if len(zoom3) == 0:
-                zooms3.append(1)
+
+            if len(signal3)>0:
+                signals3.append(signal3)
+                if len(tree3) == 0:
+                    trees3.append('east_1')
+                else:
+                    trees3.append(tree3)
+
+                if len(label3) == 0:
+                    labels3.append(signal3)
+                else:
+                    labels3.append(label3)
+                
+                if len(zoom3) == 0:
+                    zooms3.append(1)
+                else:
+                    zooms3.append(float(zoom3))
             else:
-                zooms3.append(float(zoom3))
+                signals3.append('0')
+                trees3.append('0')
+                labels3.append('0')
+                zooms3.append(0)
 
 
 
@@ -303,6 +315,7 @@ def plot_data():
     [shot, signals1, trees1, labels1, zooms1, signals2, trees2, labels2, zooms2, signals3, trees3, labels3, zooms3, begin, end, low_filter, up_filter] = get_input()
 
     plt.title(str(shot))
+    
     # signals = list(reversed(signals))
     # print(processes)
     # print(parameters)
@@ -492,16 +505,21 @@ def plot_data():
 
     i = 0
     n = len(signals2)
-    if n > 0:
-        for signal in signals2:
-            tree = trees2[i]
-            slabel = labels2[i]
+    
+    for signal in signals2:
+        tree = trees2[i]
+        slabel = labels2[i]
             
-            i = i+1
+        i = i+1
+        if signal != '0':
+            
+            
             
             color = colors[1]
 
-                
+            print(signal)
+            print(shot)
+            print(tree)
             [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], zoom=zoom)
 
 
@@ -636,13 +654,15 @@ def plot_data():
 
     i = 0
     n = len(signals3)
-    if n > 0:
+    
 
-        for signal in signals3:
-            tree = trees3[i]
-            slabel = labels3[i]
+    for signal in signals3:
+        tree = trees3[i]
+        slabel = labels3[i]
             
-            i = i+1
+        i = i+1
+        if signal != '0':
+            
             
             color = colors[2]
 
