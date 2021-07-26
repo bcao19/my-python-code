@@ -3,8 +3,8 @@ Description:
 Author: caobin
 Date: 2021-06-20 18:14:58
 Github: https://github.com/bcao19
-LastEditors  : caobin
-LastEditTime : 2021-07-22 23:55:11
+LastEditors: caobin
+LastEditTime: 2021-07-13 20:29:59
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -32,15 +32,9 @@ def check(shot, whichone, small=1):
     Pam2P = 4.82e20
     kp = 4e5
     if small < -1:
-        if whichone>3:
-            V = 4e-4+3e-3
-        else:
-            V = 2.0431e-4+3.78e-3
+        V = 2.0431e-4+3.78e-3
     else:
-        if whichone>3:
-            V = 4e-4
-        else:
-            V = 2.0431e-4
+        V = 2.0431e-4
         
     small = abs(small)
     if whichone == 3:
@@ -62,37 +56,37 @@ def check(shot, whichone, small=1):
         else:
             gauge_name = 'PJS204'
     elif whichone == 4:
-        # V = 4e-4
+        V = 4e-4
         signal_name = 'smbi4'
         if small == 1:
             gauge_name = 'PDS1_2'
             kp = 2e4
         else:
-            gauge_name ='PDS1_3'
+            gauge_name ='PDS1_1'
     elif whichone == 5:
-        # V = 4e-4
+        V = 4e-4
         signal_name = 'smbi5'
         if small == 1:
             gauge_name = 'PDS1_2'
             kp = 2e4
         else:
-            gauge_name ='PDS1_3'
+            gauge_name ='PDS1_1'
     elif whichone == 6:
-        # V = 4e-4
+        V = 4e-4
         signal_name = 'smbi6'
         if small == 1:
             gauge_name = 'PPS1_2'
             kp = 2e4
         else:
-            gauge_name ='PPS1_3'
+            gauge_name ='PPS1_1'
     elif whichone == 7:
-        # V = 4e-4
+        V = 4e-4
         signal_name = 'smbi7'
         if small == 1:
             gauge_name = 'PPS1_2'
             kp = 2e4
         else:
-            gauge_name ='PPS1_3'
+            gauge_name ='PPS1_1'
     else:
         import sys
         sys.exit('SMBI No. error')
