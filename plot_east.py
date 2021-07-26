@@ -202,8 +202,11 @@ def plot_data():
         for shot in shots:
             color = colors[j]
 <<<<<<< HEAD
+<<<<<<< HEAD
             if process == 'move':
 =======
+=======
+>>>>>>> parent of 69cde40 (add zoom and log)
             print(signal[: 3])
             if signal[:4] == 'get_':
                 from importlib import import_module
