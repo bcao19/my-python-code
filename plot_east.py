@@ -201,7 +201,7 @@ def plot_data():
         j = 0
         for shot in shots:
             color = colors[j]
-            print(signal[: 3])
+            # print(signal[: 3])
             if signal[:4] == 'get_':
                 from importlib import import_module
                 read = import_module(signal)
