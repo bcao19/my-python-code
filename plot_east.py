@@ -201,19 +201,13 @@ def plot_data():
         j = 0
         for shot in shots:
             color = colors[j]
-<<<<<<< HEAD
-<<<<<<< HEAD
-            if process == 'move':
-=======
-=======
->>>>>>> parent of 69cde40 (add zoom and log)
-            print(signal[: 3])
+
+            
             if signal[:4] == 'get_':
                 from importlib import import_module
                 get = import_module(signal)
                 [t, y] = get.read(shot, [begin, end])
             elif process == 'move':
->>>>>>> parent of 69cde40 (add zoom and log)
                 [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], move=parameter[j])
             elif process == 'medfilt':
                 [t, y] = get.data(signal, shot, tree=tree, timerange=[begin, end], medfilt=int(parameter[j]))
