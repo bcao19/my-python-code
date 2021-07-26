@@ -40,14 +40,14 @@ from east_mds import  filter
 
 window=tk.Tk() #创建Tk对象
 window.title("plot shot signal") #设置窗口标题
-window.geometry("575x300") #设置窗口尺寸
+window.geometry("1075x300") #设置窗口尺寸
 names = locals()
 names['shot0'] = tk.Label(window,text="shot", height=1) #标签
 names['shot0'].place(x=20, y=10) #指定包管理器放置组件
 
 
 names['shot1'] = tk.Entry()
-names['shot1'].place(x=10, y=10+25*i, width=50)
+names['shot1'].place(x=10, y=35, width=50)
     
 
 names['signal10'] = tk.Label(window,text="signal", height=1) #标签
