@@ -33,8 +33,12 @@ def check(shot, whichone, small=1):
     kp = 4e5
     if small < -1:
         V = 2.0431e-4+3.78e-3
+        if whichone > 3:
+            V = 4e-4+3e-3
     else:
         V = 2.0431e-4
+        if whichone > 3:
+            V = 4e-4
         
     small = abs(small)
     if whichone == 3:
@@ -62,7 +66,7 @@ def check(shot, whichone, small=1):
             gauge_name = 'PDS1_2'
             kp = 2e4
         else:
-            gauge_name ='PDS1_1'
+            gauge_name ='PDS1_3'
     elif whichone == 5:
         V = 4e-4
         signal_name = 'smbi5'
@@ -70,7 +74,7 @@ def check(shot, whichone, small=1):
             gauge_name = 'PDS1_2'
             kp = 2e4
         else:
-            gauge_name ='PDS1_1'
+            gauge_name ='PDS1_3'
     elif whichone == 6:
         V = 4e-4
         signal_name = 'smbi6'
@@ -78,7 +82,7 @@ def check(shot, whichone, small=1):
             gauge_name = 'PPS1_2'
             kp = 2e4
         else:
-            gauge_name ='PPS1_1'
+            gauge_name ='PPS1_3'
     elif whichone == 7:
         V = 4e-4
         signal_name = 'smbi7'
@@ -86,7 +90,7 @@ def check(shot, whichone, small=1):
             gauge_name = 'PPS1_2'
             kp = 2e4
         else:
-            gauge_name ='PPS1_1'
+            gauge_name ='PPS1_3'
     else:
         import sys
         sys.exit('SMBI No. error')
