@@ -86,7 +86,7 @@ def check(shot, whichone, small=1):
             gauge_name = 'PPS1_2'
             kp = 2e4
         else:
-            gauge_name ='PPS1_3'
+            gauge_name ='PPS1_1'
     else:
         import sys
         sys.exit('SMBI No. error')
