@@ -52,7 +52,21 @@ def data(signal, shot, **kw):
 		t = t[index]
 		x = x[index]
 
-	
+	judge = signal[0:2]
+	if judge == "G1":
+		temp = x
+		x = 10**(temp*1.667-9.333)
+
+	elif judge == "PA" or judge == "PJ":
+		temp = x
+		x = 2e3*temp
+		
+	elif judge == "PP" or judge == "PD":
+		temp = x
+		x = 2e4*temp
+
+
+
 	if 'medfilt' in kw:
 		n = kw['medfilt']
 		x = sig.medfilt(x, n)

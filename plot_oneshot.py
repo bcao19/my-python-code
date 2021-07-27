@@ -150,6 +150,13 @@ for i in range(1, 8):
     names['zoom3'+str(i)] = tk.Entry()
     names['zoom3'+str(i)].place(x=1180, y=10+25*i, width=80)
 
+names['unit0'] = tk.Label(window,text="unit", height=1) #标签
+names['unit0'].place(x=1300, y=10) #指定包管理器放置组件
+
+for i in range(1, 8):
+    names['unit'+str(i)] = tk.Entry()
+    names['unit'+str(i)].place(x=1280, y=10+25*i, width=80)
+
 
 
 
@@ -189,6 +196,7 @@ def get_input():
     trees3 = []
     labels3 = []
     zooms3 = []
+    units = []
 
     
 
@@ -217,6 +225,7 @@ def get_input():
         tree3 = names['tree3'+str(i)].get()
         label3 = names['label3'+str(i)].get()
         zoom3 = names['zoom3'+str(i)].get()
+        unit = names['unit'+str(i)].get()
 
         if len(signal1)>0:
             signals1.append(signal1)
@@ -280,6 +289,11 @@ def get_input():
                 trees3.append('0')
                 labels3.append('0')
                 zooms3.append(0)
+            
+            if len(unit)>0:
+                units.append(unit)
+            else:
+                units.append('0')
 
 
 
@@ -303,7 +317,7 @@ def get_input():
     up_frequency= int(up_frequency)
     
 
-    return shot, signals1, trees1, labels1, zooms1, signals2, trees2, labels2, zooms2, signals3, trees3, labels3, zooms3, begin_time, end_time, low_frequency, up_frequency
+    return shot, signals1, trees1, labels1, zooms1, signals2, trees2, labels2, zooms2, signals3, trees3, labels3, zooms3, units, begin_time, end_time, low_frequency, up_frequency
 
 
 
@@ -312,7 +326,7 @@ def plot_data():
     plt.figure(figsize=(9, 12))
     
 
-    [shot, signals1, trees1, labels1, zooms1, signals2, trees2, labels2, zooms2, signals3, trees3, labels3, zooms3, begin, end, low_filter, up_filter] = get_input()
+    [shot, signals1, trees1, labels1, zooms1, signals2, trees2, labels2, zooms2, signals3, trees3, labels3, zooms3, units, begin, end, low_filter, up_filter] = get_input()
 
     plt.title(str(shot))
     
@@ -338,6 +352,7 @@ def plot_data():
         tree3 = trees3[i]
         slabel3 = labels3[i]
         zoom3 = zooms3[i]
+        unit = units[i]
         
         i = i+1
         
@@ -375,19 +390,7 @@ def plot_data():
                 y = filter.band_stop(y, low_filter, up_filter, fs)
         
         
-        judge = signal[0:2]
-        if judge == "G1":
-            temp = np.array(y)
-            temp = 10**(temp*1.667-9.333)
-            y = list(temp)
-        elif judge == "PA" or judge == "PJ":
-            temp = np.array(y)
-            temp = 2e3*temp
-            y = list(temp)
-        elif judge == "PP" or judge == "PD":
-            temp = np.array(y)
-            temp = 2e4*temp
-            y = list(temp)
+        
         
 
         
@@ -410,8 +413,9 @@ def plot_data():
                 plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='on',labelleft='on',labelright='off')
             plt.subplots_adjust(wspace =0, hspace =0.03*n)
             ax1.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
-            # plt.ylabel(slabel)
-                # plt.xlim([begin, end])
+            if unit != '0':
+                plt.ylabel(unit)
+            plt.xlim([begin, end])
                 
             ax1.plot(t, y, color=color, label=slabel)
             if signal2 != '0':
@@ -437,9 +441,10 @@ def plot_data():
                 
             plt.subplots_adjust(wspace =0, hspace =0.03*n)
             ax2.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
-            # plt.ylabel(slabel)
+            if unit != '0':
+                plt.ylabel(unit)
             plt.xlabel('time (s)')
-                # plt.xlim([begin, end])
+            plt.xlim([begin, end])
             ax1 = ax2
 
             ax1.plot(t, y, color=color, label=slabel)
@@ -483,8 +488,9 @@ def plot_data():
             plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelright='off')
             plt.subplots_adjust(wspace =0, hspace =0.03*n)
             ax2.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
-            # plt.ylabel(slabel)
-                # plt.xlim([begin, end])
+            if unit != '0':
+                plt.ylabel(unit)
+            plt.xlim([begin, end])
             ax1 = ax2
             ax1.plot(t, y, color=color, label=slabel)
             if signal2 != '0':
