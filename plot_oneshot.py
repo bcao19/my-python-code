@@ -3,8 +3,8 @@ Description:
 Author: caobin
 Date: 2021-07-26 22:01:31
 Github: https://github.com/bcao19
-LastEditors  : caobin
-LastEditTime : 2021-07-27 03:38:31
+LastEditors: caobin
+LastEditTime: 2021-08-02 09:25:40
 '''
 '''
 Description: 
@@ -404,7 +404,7 @@ def plot_data():
                 
             plt.rcParams['xtick.direction'] = 'in'#将x周的刻度线方向设置向内
             plt.rcParams['ytick.direction'] = 'in'#将y轴的刻度方向设置向内
-            plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+            plt.tick_params(top='on',bottom='on',left='on',right='on', labeltop='off',labelbottom='off',labelleft='on',labelbottom=False)
                 # if (n-i)&1:
                 #     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='off',labelright='on')
                 #     ax1.yaxis.set_label_position("right") 
@@ -486,7 +486,7 @@ def plot_data():
                 #     ax2.yaxis.set_label_position("right") 
                 # else:
                 #     plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelright='off')
-            plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelright='off')
+            plt.tick_params(top='on',bottom='on',left='on',right='on',labeltop='off',labelbottom='off',labelleft='on',labelbottom=False)
             plt.subplots_adjust(wspace =0, hspace =0.03*n)
             ax2.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
             if unit != '0':
