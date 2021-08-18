@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-20 18:14:58
 Github: https://github.com/bcao19
 LastEditors  : caobin
-LastEditTime : 2021-08-18 15:03:31
+LastEditTime : 2021-08-18 15:18:07
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -114,6 +114,7 @@ def check(shot, whichone, small=1):
         l = len(index[0])*1e-4
 
         stop_smbi = max(index[0])
+        print(stop_smbi)
 
         # temp = smbi[1 : ]-smbi[ : -1]
         # index = np.where(temp>3)
