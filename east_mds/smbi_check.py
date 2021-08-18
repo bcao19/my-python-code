@@ -3,8 +3,8 @@ Description:
 Author: caobin
 Date: 2021-06-20 18:14:58
 Github: https://github.com/bcao19
-LastEditors: caobin
-LastEditTime: 2021-07-13 20:29:59
+LastEditors  : caobin
+LastEditTime : 2021-08-18 15:03:31
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -112,6 +112,9 @@ def check(shot, whichone, small=1):
 
         index = np.where(smbi>3)
         l = len(index[0])*1e-4
+
+        stop_smbi = max(index[0])
+
         # temp = smbi[1 : ]-smbi[ : -1]
         # index = np.where(temp>3)
         # n = len(index[0])
@@ -123,7 +126,7 @@ def check(shot, whichone, small=1):
 
         pressure = savgol_filter(pressure, 1001, 3)
         len_p = len(pressure)
-        p = np.mean(pressure[100:1100])-np.mean(pressure[int(len_p-1e4):int(len_p-1e4+100)])
+        p = np.mean(pressure[100:1100])-np.mean(pressure[int(stop_smbi+100):int(stop_smbi+200)])
         p = abs(p)
         if p<1e2:
             p = 0
