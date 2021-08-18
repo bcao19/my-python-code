@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-20 18:14:58
 Github: https://github.com/bcao19
 LastEditors  : caobin
-LastEditTime : 2021-08-18 15:18:07
+LastEditTime : 2021-08-18 15:19:36
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -127,7 +127,7 @@ def check(shot, whichone, small=1):
 
         pressure = savgol_filter(pressure, 1001, 3)
         len_p = len(pressure)
-        p = np.mean(pressure[100:1100])-np.mean(pressure[int(stop_smbi+100):int(stop_smbi+200)])
+        p = np.mean(pressure[100:1100])-np.mean(pressure[stop_smbi+100:stop_smbi+200])
         p = abs(p)
         if p<1e2:
             p = 0
