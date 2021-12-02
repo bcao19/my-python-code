@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-20 18:14:58
 Github: https://github.com/bcao19
 LastEditors  : caobin
-LastEditTime : 2021-08-18 15:53:08
+LastEditTime : 2021-11-26 14:40:16
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -43,22 +43,22 @@ def check(shot, whichone, small=1):
     small = abs(small)
     if whichone == 3:
         signal_name = 'smbi3'
-        if small == 1:
-            gauge_name = 'PAS105'
-            kp = 2e3
+        if small == 4:
+            gauge_name = 'JHF1'
         elif small == 3:
             gauge_name = 'PAS103'
         else:
-            gauge_name = 'JHF1'
+            gauge_name = 'PAS105'
+            kp = 2e3
     elif whichone == 2:
         signal_name = 'smbi2'
-        if small == 1:
-            gauge_name = 'PJS205'
-            kp = 2e3
+        if small == 4:
+            gauge_name = 'PJS204'
         elif small == 3:
             gauge_name = 'PJS203'
         else:
-            gauge_name = 'PJS204'
+            gauge_name = 'PJS205'
+            kp = 2e3
     elif whichone == 4:
         V = 4e-4
         signal_name = 'smbi4'
@@ -130,7 +130,7 @@ def check(shot, whichone, small=1):
         len_p = len(pressure)
         p = np.mean(pressure[100:1100])-np.mean(pressure[stop_smbi+1000:stop_smbi+1100])
         p = abs(p)
-        if p<1e2:
+        if p<10:
             p = 0
         else:
             p = p*V*Pam2P
