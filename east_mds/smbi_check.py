@@ -110,30 +110,35 @@ def check(shot, whichone, small=1):
 
     else:
 
-        index = np.where(smbi>3)
+        index = np.where(smbi>1)
         l = len(index[0])*1e-4
 
-        stop_smbi = max(index[0])
-        stop_smbi = stop_smbi//10
-        
+        if l>0:
+            stop_smbi = max(index[0])
+            stop_smbi = stop_smbi//10
+            
 
-        # temp = smbi[1 : ]-smbi[ : -1]
-        # index = np.where(temp>3)
-        # n = len(index[0])
-        t = t[index]
-        temp = t[1 : ]-t[ : -1]
-        index = np.where(temp>7e-4)
-        n = len(index[0])+1
+            # temp = smbi[1 : ]-smbi[ : -1]
+            # index = np.where(temp>3)
+            # n = len(index[0])
+            t = t[index]
+            temp = t[1 : ]-t[ : -1]
+            index = np.where(temp>7e-4)
+            n = len(index[0])+1
 
 
-        pressure = savgol_filter(pressure, 1001, 3)
-        len_p = len(pressure)
-        p = np.mean(pressure[100:1100])-np.mean(pressure[stop_smbi+1000:stop_smbi+1100])
-        p = abs(p)
-        if p<10:
-            p = 0
+            pressure = savgol_filter(pressure, 1001, 3)
+            len_p = len(pressure)
+            p = np.mean(pressure[100:1100])-np.mean(pressure[stop_smbi+1000:stop_smbi+1100])
+            p = abs(p)
+            if p<10:
+                p = 0
+            else:
+                p = p*V*Pam2P
         else:
-            p = p*V*Pam2P
+            l = 0
+            n = 0
+            p = 0
 
     print(n)
     print(l)
