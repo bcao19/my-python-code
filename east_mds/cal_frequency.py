@@ -3,8 +3,8 @@ Description:
 Author: caobin
 Date: 2021-06-16 09:01:57
 Github: https://github.com/bcao19
-LastEditors: caobin
-LastEditTime: 2021-07-17 20:18:06
+LastEditors: error: git config user.name && git config user.email & please set dead value or install git
+LastEditTime: 2022-06-28 14:21:00
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -68,10 +68,10 @@ def spec_wavlet(t, x, nfft=1024, wavename='cgau8', vmax=0.1):
 
 if __name__ == '__main__':
 
-    signal = input('Input the signal: ')
+    signal = input('Input the signal (cmp16t): ')
     if signal == "":
         signal = 'cmpl6t'
-    tree = input('Input the tree: ')
+    tree = input('Input the tree (east): ')
     if tree == "":
         tree = 'east'
     shot_num = input('Input the shot: ')
@@ -80,10 +80,10 @@ if __name__ == '__main__':
     begin_time = float(begin_time)
     end_time = input('Input the end_time: ')
     end_time = float(end_time)
-    method = input('Input the method: ')
+    method = input('Input the method (stft): ')
     if method == "":
         method = 'stft'
-    nfft = input('Input the number for fft: ')
+    nfft = input('Input the number for fft (256): ')
     if nfft == "":
         if method == 'wavlet':
             nfft = 256
@@ -91,17 +91,17 @@ if __name__ == '__main__':
             nfft = 1024
     else:
         nfft = int(nfft)
-    fcut = input("Input the cut off high frequency: ")
+    fcut = input("Input the cut off high frequency (0): ")
     if fcut == "":
         fcut = 0
     else:
         fcut = float(fcut)
-    vmin = input('Input the vmin: ')
+    vmin = input('Input the vmin (0): ')
     if vmin == "":
         vmin = 0
     else:
         vmin = float(vmin)
-    vmax = input('Input the vmax: ')
+    vmax = input('Input the vmax (0): ')
     if vmax == "":
         vmax = 0
     else:
