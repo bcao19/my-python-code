@@ -4,7 +4,7 @@ Author: caobin
 Date: 2021-06-16 09:01:57
 Github: https://github.com/bcao19
 LastEditors: error: git config user.name && git config user.email & please set dead value or install git
-LastEditTime: 2022-06-28 14:21:00
+LastEditTime: 2022-06-28 23:39:32
 '''
 #!/home/ASIPP/caobin/anaconda3/bin/python
 # -*-coding: UTF-8 -*-
@@ -68,7 +68,7 @@ def spec_wavlet(t, x, nfft=1024, wavename='cgau8', vmax=0.1):
 
 if __name__ == '__main__':
 
-    signal = input('Input the signal (cmp16t): ')
+    signal = input('Input the signal (cmpl6t): ')
     if signal == "":
         signal = 'cmpl6t'
     tree = input('Input the tree (east): ')
