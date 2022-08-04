@@ -1,32 +1,3 @@
-Skip to content
-Product 
-Team
-Enterprise
-Explore 
-Marketplace
-Pricing 
-Search
-Sign in
-Sign up
-d2l-ai
-/
-d2l-zh
-Public
-Code
-Pull requests
-7
-Actions
-Security
-Insights
-d2l-zh/d2l/torch.py /
-@Yulv-git
-Yulv-git Fix some typos. (#1163)
-Latest commit 3c3a9e8 16 days ago
- History
- 5 contributors
-@astonzhang@mli@xiaotinghe@AnirudhDagar@Yulv-git
-2636 lines (2271 sloc)  104 KB
-
 #################   WARNING   ################
 # The below part is generated automatically through:
 #    d2lbook build lib
@@ -2547,17 +2518,3 @@ argmax = lambda x, *args, **kwargs: x.argmax(*args, **kwargs)
 astype = lambda x, *args, **kwargs: x.type(*args, **kwargs)
 transpose = lambda x, *args, **kwargs: x.t(*args, **kwargs)
 reduce_mean = lambda x, *args, **kwargs: x.mean(*args, **kwargs)
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
