@@ -2,7 +2,7 @@
 Author       : caobin
 Date         : 2022-08-15 09:36:43
 LastEditors  : caobin
-LastEditTime : 2022-08-15 12:49:10
+LastEditTime : 2022-08-15 12:50:35
 FilePath     : \undefinedd:\bcao19\my-python-code\pytorch\mybenchmark.py
 '''
 import torch
