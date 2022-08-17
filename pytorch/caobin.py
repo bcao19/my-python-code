@@ -2,7 +2,7 @@
 Author       : caobin
 Date         : 2022-08-09 15:34:14
 LastEditors  : caobin
-LastEditTime : 2022-08-09 15:35:56
+LastEditTime : 2022-08-17 08:28:58
 FilePath     : \my-python-code\pytorch\caobin.py
 '''
 
@@ -12,6 +12,8 @@ import torch
 from torch import nn
 from pytorch import d2l 
 
+import os
+os.environ["KMP_DUPLICATE_LIB_OK"]  =  "TRUE"
 
 
 
