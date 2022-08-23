@@ -2,7 +2,7 @@
 Author       : caobin
 Date         : 2022-08-05 15:14:24
 LastEditors  : caobin
-LastEditTime : 2022-08-05 15:24:20
+LastEditTime : 2022-08-19 16:49:57
 FilePath     : \my-python-code\pytorch\Matrix_fit.py
 '''
 import math

@@ -1,3 +1,10 @@
+'''
+Author       : caobin
+Date         : 2022-08-15 09:36:43
+LastEditors  : caobin
+LastEditTime : 2022-08-19 16:46:00
+FilePath     : \my-python-code\pytorch\mybenchmark.py
+'''
 
 
 
