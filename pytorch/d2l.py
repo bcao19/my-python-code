@@ -87,6 +87,7 @@ def plot(X, Y=None, xlabel=None, ylabel=None, legend=None, xlim=None,
         else:
             axes.plot(y, fmt)
     set_axes(axes, xlabel, ylabel, xlim, ylim, xscale, yscale, legend)
+    plt()
 
 class Timer:
     """记录多次运行时间"""
