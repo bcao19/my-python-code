@@ -2,7 +2,7 @@
 Author       : caobin
 Date         : 2022-08-09 15:34:14
 LastEditors  : caobin
-LastEditTime : 2022-08-22 13:40:49
+LastEditTime : 2022-08-24 14:17:06
 FilePath     : \my-python-code\pytorch\caobin.py
 '''
 
@@ -12,8 +12,6 @@ import torch
 from torch import nn
 from pytorch import d2l 
 
-import os
-os.environ["KMP_DUPLICATE_LIB_OK"]  =  "TRUE"
 
 
 
@@ -57,4 +55,12 @@ def vgg(conv_arch):
         nn.Linear(4096, 4096), nn.ReLU(), nn.Dropout(0.5),
         nn.Linear(4096, 10))
 
+
+
+def nin_block(in_channels, out_channels, kernel_size, strides, padding):
+    return nn.Sequential(
+        nn.Conv2d(in_channels, out_channels, kernel_size, strides, padding),
+        nn.ReLU(),
+        nn.Conv2d(out_channels, out_channels, kernel_size=1), nn.ReLU(),
+        nn.Conv2d(out_channels, out_channels, kernel_size=1), nn.ReLU())
 
