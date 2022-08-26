@@ -2,7 +2,7 @@
 Author       : caobin
 Date         : 2022-08-19 16:52:12
 LastEditors  : caobin
-LastEditTime : 2022-08-26 09:56:59
+LastEditTime : 2022-08-26 10:38:07
 FilePath     : \my-python-code\pytorch\test.py
 '''
 
@@ -16,11 +16,10 @@ from pytorch import caobin
 nin_block = caobin.nin_block
 Inception = caobin.Inception
 
-
+# a
 
 a=16
 foo = "hello"
 print(a)
-
 
 

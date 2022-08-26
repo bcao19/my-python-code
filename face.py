@@ -3,8 +3,8 @@
 @Author: caobin
 @Date: 2019-12-21 17:47:09
 @Github: https://github.com/bcao19
-@LastEditors  : caobin
-@LastEditTime : 2019-12-21 17:55:17
+LastEditors  : caobin
+LastEditTime : 2022-08-26 10:34:56
 '''
 import face_recognition
 import cv2
@@ -92,6 +92,3 @@ while True:
 # All done!
 input_movie.release()
 cv2.destroyAllWindows()
-————————————————
-版权声明：本文为CSDN博主「_iorilan」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/lan_liang/article/details/86557160
