@@ -2,14 +2,23 @@
 Author       : caobin
 Date         : 2022-08-15 09:36:43
 LastEditors  : caobin
-LastEditTime : 2022-08-26 08:24:04
+LastEditTime : 2022-08-26 13:37:25
 FilePath     : \my-python-code\pytorch\mybenchmark.py
 '''
 
 
 
 import torch
+import inspect
+from collections import defaultdict
+import pandas as pd
 from torch.utils import benchmark
+
+
+print('Pytorch version\t:', torch.__version__)
+print('CUDA version\t:', torch.version.cuda)
+print('GPU\t\t:',torch.cuda.get_device_name())
+
 
 typ = torch.float16
 

@@ -2,7 +2,7 @@
 Author       : caobin
 Date         : 2022-08-19 16:52:12
 LastEditors  : caobin
-LastEditTime : 2022-08-26 10:38:07
+LastEditTime : 2022-08-26 13:19:42
 FilePath     : \my-python-code\pytorch\test.py
 '''
 
