@@ -14,9 +14,9 @@ import xlrd
 root = tk.Tk()    # 显式创建根窗体
 root.withdraw()   # 将根窗体隐藏
 
-file = filedialog.askopenfilename(parent=root)
+file = filedialog.askopenfilename(parent=root, title='打开统计excel文件')
 
-folder = filedialog.askdirectory(parent=root)
+folder = filedialog.askdirectory(parent=root, title='打开需要统计文件夹')
 
 data1 = pd.read_excel(file, index_col='科室')
 
