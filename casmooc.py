@@ -2,8 +2,8 @@
 Author       : caobin
 Date         : 2021-12-02 15:20:08
 LastEditors  : caobin
-LastEditTime : 2021-12-02 16:00:15
-FilePath     : \undefinedd:\bcao19\my-python-code\casmooc.py
+LastEditTime : 2022-09-28 09:25:36
+FilePath     : \my-python-code\casmooc.py
 '''
 
 # -*- coding: utf-8 -*-
@@ -19,7 +19,7 @@ import time
 x_location = [450, 700, 950, 1200, 1450]
 y_location = [260, 560, 850]
 y1_location = [480, 760]
-auto.computer_web_open('http://www.casmooc.cn//onlineStudy.do?method=intoFrame')
+auto.computer_web_open(r"https://www.casmooc.cn/#/course/index")
 
 
 for y in y1_location:

@@ -19,7 +19,7 @@ file = filedialog.askopenfilename(parent=root, title='打开统计excel文件')
 folder = filedialog.askdirectory(parent=root, title='打开需要统计文件夹')
 
 # data1 = pd.read_excel(file, index_col='科室')
-data1 = pd.read_excel(file, index_col=0)
+data1 = pd.read_excel(file, index_col=)
 
 file_list = os.listdir(folder)
 
