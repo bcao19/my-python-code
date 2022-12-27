@@ -37,7 +37,7 @@ def data(signal, shot, **kw):
 	else:
 		tree = 'east'
 
-	cn = mds.Connection('mds.ipp.ac.cn')
+	cn = mds.Connection('202.127.204.12')
 	cn.openTree(tree, shot)
 	x = cn.get('\\'+signal).copy()
 	t = cn.get('dim_of('+'\\'+signal+')').copy()
