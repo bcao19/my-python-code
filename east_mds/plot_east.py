@@ -273,6 +273,7 @@ def plot_data():
                     
                     plt.subplots_adjust(wspace =0, hspace =0.03*n)
                     ax1.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
+                    ax1.set_ylabel(..., fontsize=20)
                     plt.ylabel(slabel)
                     # plt.xlim([begin, end])
                     
@@ -293,6 +294,8 @@ def plot_data():
                     
                     plt.subplots_adjust(wspace =0, hspace =0.03*n)
                     ax2.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
+                    ax2.set_ylabel(..., fontsize=20)
+                    ax2.set_xlabel(..., fontsize=20)
                     plt.ylabel(slabel)
                     plt.xlabel('time (s)')
                     # plt.xlim([begin, end])
@@ -332,6 +335,8 @@ def plot_data():
                     plt.tick_params(top='on',bottom='on',left='on',right='on',labelleft='on',direction='in', labelbottom=False)
                     plt.subplots_adjust(wspace =0, hspace =0.03*n)
                     ax2.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
+                    ax2.set_ylabel(..., fontsize=20)
+                    ax2.set_xlabel(..., fontsize=20)
                     plt.ylabel(slabel)
                     # plt.xlim([begin, end])
                     ax1 = ax2
