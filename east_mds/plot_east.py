@@ -279,9 +279,9 @@ def plot_data():
                     
                 ax1.plot(t, y, color=color, label=str(shot))
                 
+                plt.rcParams.update({'font.size': 20})
                 ax1.legend()
-                plt.rcParams.update({'font.size': 15})
-
+                
 
 
             elif i == n:
