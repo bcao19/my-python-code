@@ -279,7 +279,7 @@ def plot_data():
                     
                 ax1.plot(t, y, color=color, label=str(shot))
                 
-                ax1.legend(..., fontsize=20)
+                ax1.legend()
 
 
 
