@@ -6,3 +6,5 @@ LastEditTime : 2022-08-26 10:03:15
 FilePath     : \my-python-code\test.py
 '''
 print('中午')
+
+print('20230117')
