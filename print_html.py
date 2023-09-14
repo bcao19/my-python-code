@@ -14,6 +14,7 @@ from selenium import webdriver
 URL = 'http://202.127.204.30/zonghenew.php'
 PIC_PATH = 'E:/'
 PIC_NAME = 'screenshot.png'
+d
 
 
 def screenshot_web(url=URL, path=PIC_PATH, name=PIC_NAME):

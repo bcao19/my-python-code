@@ -1,5 +1,6 @@
-#简单整合难免出错，大佬多指教
+1#简单整合难免出错，大佬多指教
 import requests
+from sys import exit
 
 while True:
     chose = input(

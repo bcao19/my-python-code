@@ -9,3 +9,13 @@ print('中午')
 
 print('20230117')
 good555
+
+
+
+# a function that extract all number from a string
+def extract_number(s):
+    number = ''
+    for i in s:
+        if i.isdigit():
+            number += i
+    return number
