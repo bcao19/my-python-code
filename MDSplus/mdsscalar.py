@@ -358,7 +358,7 @@ class String(Scalar):
     _ntype=_ver.npbytes
     def __init__(self,value):
         super(String,self).__init__(value)
-        if not isinstance(self._value,_N.str):
+        if not isinstance(self._value,_N.str_):
             self._value = _ver.npstr(_ver.tostr(self._value))
     @property
     def _descriptor(self):
